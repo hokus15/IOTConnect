@@ -1,0 +1,6 @@
+
+iotconnect/iotconnect.config.json
+
+*.log
+
+__pycache__/

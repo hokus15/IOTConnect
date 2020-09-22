@@ -1,0 +1,18 @@
+{
+    "publishers":[
+        {
+            "class": "iotconnect.publishers.mqtt.MQTTPublisher",
+            "broker": "broker.address",
+            "port": 8883,
+            "user": "broker-user",
+            "password": "broker-password",
+            "topic_prefix": "topic-prefix"
+         }
+    ],
+    "monitors":[
+        {
+            "class": "iotconnect.monitors.noop.NoopMonitor",
+            "interval": 10
+        }
+    ]
+}
