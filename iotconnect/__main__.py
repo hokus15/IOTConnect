@@ -21,7 +21,7 @@ def load_class(module_class):
 
 
 def main():
-    """ Starts all the threads and control the status periodically. """
+    """Starts all the publishers and monitors and control the status periodically."""
     logger = logging.getLogger('iotconnect')
     logging.config.fileConfig('iotconnect/logging.conf')
     try:

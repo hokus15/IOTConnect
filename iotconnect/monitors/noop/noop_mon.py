@@ -3,7 +3,7 @@ from iotconnect.monitor import Monitor
 
 
 class NoopMonitor(Monitor):
-    """ Class implementing no operation Monitor. """
+    """Class implementing no operation Monitor."""
 
     def __init__(self, config, callback):
         Monitor.__init__(self, config, callback)

@@ -7,7 +7,7 @@ from iotconnect.publisher import Publisher
 
 
 class MQTTPublisher(Publisher):
-    """ Class implementing a MQTT publisher."""
+    """Class implementing a MQTT publisher."""
 
     def __init__(self, config):
         Publisher.__init__(self, config)

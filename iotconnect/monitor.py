@@ -8,7 +8,8 @@ class MonitorError(Exception):
 
 
 class Monitor:
-    """ Abstract class implementing monitor. """
+
+    """Abstract class implementing monitor."""
 
     def __init__(self, config, publishers):
         self._log = logging.getLogger('iotconnect.monitors.' + self.__class__.__name__)
@@ -37,14 +38,14 @@ class Monitor:
                 time.sleep(max(0, interval))
 
     def start(self):
-        """ Start the monitor thread. """
+        """Start the monitor thread."""
         self._running = True
         self._thread = Thread(target=self.run, name=self.__class__.__name__)
         self._thread.start()
         self._log.info("--- %s started ---", self.__class__.__name__)
 
     def stop(self):
-        """ Stop the monitor thread. """
+        """Stop the monitor thread."""
         self._log.info("--- Stopping %s ---", self.__class__.__name__)
         self._running = False
         if self._thread is not None:

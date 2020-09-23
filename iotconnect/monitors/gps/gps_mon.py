@@ -10,6 +10,8 @@ gpsd = None  # setting the global variable
 
 
 class GpsdThread(threading.Thread):
+    """Thread that iterate the gpsd info to clear the buffer."""
+
     def __init__(self):
         threading.Thread.__init__(self)
         self.setDaemon(True)
@@ -25,7 +27,7 @@ class GpsdThread(threading.Thread):
 
 
 class GpsMonitor(Monitor):
-    """ Class implementing Monitor that reads data from gpsd. """
+    """Class implementing Monitor that reads data from gpsd."""
 
     def __init__(self, config, callback):
         Monitor.__init__(self, config, callback)
@@ -39,7 +41,7 @@ class GpsMonitor(Monitor):
         self._retries = 0
 
     def monitor(self):
-        """ Monitor the gps. """
+        """Monitor the gps."""
         fix = {}
 
         # It may take some poll calls to get good data

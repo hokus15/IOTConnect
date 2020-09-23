@@ -16,12 +16,14 @@ class CanError(Exception):
 
 
 class IoniqEVMonitor(Monitor):
+
     """
     Class implementing Monitor that reads data from Hyundai Ioniq EV
     using OBDII.
     """
 
     def __init__(self, config, callback):
+        """Inits the monitor."""
         Monitor.__init__(self, config, callback)
         self._log = logging.getLogger('iotconnect.monitors.' + self.__class__.__name__)
         self._port = config['port']
@@ -44,7 +46,7 @@ class IoniqEVMonitor(Monitor):
                                      fast=self._fast,
                                      timeout=self._timeout)
             if ((obd_connection is None or obd_connection.status() != OBDStatus.CAR_CONNECTED)
-               and connection_count < self._max_attempts):
+                    and connection_count < self._max_attempts):
                 self._log.warning("%s. Retrying in %s second(s)...",
                                   obd_connection.status(),
                                   connection_count)
@@ -67,11 +69,11 @@ class IoniqEVMonitor(Monitor):
             except Exception:
                 exception = True
             valid_response = (not(cmd_response is None
-                              or cmd_response.is_null()
-                              or cmd_response.value is None
-                              or cmd_response.value == "?"
-                              or cmd_response.value == ""
-                              or exception))
+                                  or cmd_response.is_null()
+                                  or cmd_response.value is None
+                                  or cmd_response.value == "?"
+                                  or cmd_response.value == ""
+                                  or exception))
             if not valid_response and command_count < max_attempts:
                 self._log.warning("No valid response for %s. Retrying in %s second(s)...",
                                   command,
@@ -301,7 +303,7 @@ class IoniqEVMonitor(Monitor):
         return monitor_result
 
     def start(self):
-        """ Start the gps monitor thread. """
+        """Start the IoniqEV monitor thread."""
         self._log.info("--- Starting %s ---", self.__class__.__name__)
         self._connection = self.__obd_connect()
         self._log.debug(self._connection.print_commands())
