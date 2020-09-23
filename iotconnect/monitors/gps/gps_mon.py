@@ -44,7 +44,7 @@ class GpsMonitor(Monitor):
 
         # It may take some poll calls to get good data
         if (gpsd.fix.mode == 1):
-            self.__handle_no_fix('Position not fixed')
+            self._handle_no_fix('Position not fixed')
 
         fix_accuracy = max(gpsd.fix.epy,
                            gpsd.fix.epx)
@@ -90,8 +90,8 @@ class GpsMonitor(Monitor):
             self._log.info(json.dumps(fix))
             return {'location': fix}
         else:
-            self.__handle_no_fix('Low accuracy: it\'s +/- {} m but +/- {} m required'
-                                 .format(fix_accuracy, self._min_accuracy))
+            self._handle_no_fix('Low accuracy: it\'s +/- {} m but +/- {} m required'
+                                .format(fix_accuracy, self._min_accuracy))
 
     def start(self):
         self._log.info('--- Starting %s ---', self.__class__.__name__)
@@ -101,7 +101,7 @@ class GpsMonitor(Monitor):
         super().stop()
         self._log.info('--- %s stopped ---', self.__class__.__name__)
 
-    def __handle_no_fix(self, message):
+    def _handle_no_fix(self, message):
         self._retries += 1
         if self._retries_before_reboot > 0 and self._retries >= self._retries_before_reboot:  # noqa: E501
             self._log.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
