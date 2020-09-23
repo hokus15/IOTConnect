@@ -17,6 +17,8 @@ class MQTTPublisher(Publisher):
         self._user = self._config['user']
         self._password = self._config['password']
         self._topic_prefix = self._config['topic_prefix']
+        self._max_connection_retries = self._config['connection_retries']
+        self._connection_retries = 0
 
         mqtt.Client.connected_flag = False
 
@@ -38,14 +40,20 @@ class MQTTPublisher(Publisher):
         # Start loop to process callbacks
         self._mqtt_client.loop_start()
         # Conect to MQTT server
-        while not self._mqtt_client.connected_flag:
-            try:
-                self._log.debug("Trying to connect to MQTT server...")
-                self._mqtt_client.connect(self._broker, self._port)
-            except Exception as err:
-                self._log.error("MQTT connection could not be established: {}, retrying... "
-                                .format(err), exc_info=False)
+        while not self._mqtt_client.connected_flag and self._connection_retries < self._max_connection_retries:
+            self._log.debug("Trying to connect to MQTT server (%s)...", self._connection_retries + 1)
+            self._mqtt_client.connect(self._broker, self._port)
+            self._connection_retries += 1
             time.sleep(5)
+
+        if self._connection_retries >= self._max_connection_retries:
+            self._log.error("Could not connect to MQTT. Max attempts (%s) exceeded.", self._max_connection_retries)
+            self._log.info("--- %s could not be initialized ---", self.__class__.__name__)
+            raise Exception("Could not connect to MQTT. Max attempts ({}) exceeded."
+                            .format(self._max_connection_retries))
+        else:
+            self._connection_retries = 0
+            self._log.info("--- %s initialized ---", self.__class__.__name__)
 
     def __on_publish(self, client, userdata, mid):
         """MQTT function for on_publish callback."""
@@ -57,7 +65,7 @@ class MQTTPublisher(Publisher):
             client.connected_flag = True  # set flag
             self._log.info("Successfully connected to MQTT broker")
         else:
-            self._log.error("Not connected to MQTT. Bad connection Returned code=", rc)
+            self._log.debug("Could not connect to MQTT broker. Return code: %s", rc)
 
     def publish(self, context, data):
         self._log.info("topic: '%s', payload: '%s'",

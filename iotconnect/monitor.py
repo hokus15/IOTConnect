@@ -3,6 +3,10 @@ from threading import Thread
 import time
 
 
+class MonitorError(Exception):
+    pass
+
+
 class Monitor:
     """ Abstract class implementing monitor. """
 

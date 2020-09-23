@@ -6,7 +6,8 @@
             "port": 8883,
             "user": "broker-user",
             "password": "broker-password",
-            "topic_prefix": "topic-prefix"
+            "topic_prefix": "topic-prefix",
+            "connection_retries": 3
          }
     ],
     "monitors":[

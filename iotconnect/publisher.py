@@ -1,6 +1,10 @@
 import logging
 
 
+class PublisherError(Exception):
+    pass
+
+
 class Publisher:
     """ Abstract class implementing publisher.
         Subclasses need to implement publish and close methods. """
