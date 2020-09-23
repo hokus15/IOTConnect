@@ -68,7 +68,7 @@ class MQTTPublisher(Publisher):
             self._log.debug("Could not connect to MQTT broker. Return code: %s", rc)
 
     def publish(self, context, data):
-        self._log.info("topic: '%s', payload: '%s'",
+        self._log.info("context: '%s', payload: '%s'",
                        self._topic_prefix + context,
                        json.dumps(data))
         result = self._mqtt_client.publish(topic=self._topic_prefix + context,
