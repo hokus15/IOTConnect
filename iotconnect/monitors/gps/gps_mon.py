@@ -113,4 +113,4 @@ class GpsMonitor(Monitor):
             time.sleep(5)
             os.system('sudo reboot')
         else:
-            raise Exception('({}) {}'.format(self._retries, message))
+            raise Exception('({}/{}) {}'.format(self._retries, self._retries_before_reboot, message))
