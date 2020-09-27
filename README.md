@@ -8,8 +8,8 @@ It monitors the data from all configured monitors and publish the gathered data 
 This repo is an evolution and an extensible version of [Pioniq](https://github.com/hokus15/pioniq).
 
 ## Features
--   **Connectivity:** Connect anything that can be monitored using python with yout IOT hub using built in MQTTPublisher.
--   **Customization:** More systems and informations can be monitoried and published developing additional Monitors and Publishers.
+-   **Connectivity:** Connect anything that can be monitored using python with your IOT hub using built in MQTTPublisher.
+-   **Customization:** More systems and information can be monitored and published developing additional Monitors and Publishers.
 -   **Open-source:** You are welcome to improve the service by fixing bugs, adding functionality or developing your own Monitors and Publishers and make a pull request.
 
 ## Documentation
