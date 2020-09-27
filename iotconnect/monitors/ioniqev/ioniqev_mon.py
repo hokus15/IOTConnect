@@ -57,7 +57,7 @@ class IoniqEVMonitor(Monitor):
         else:
             return obd_connection
 
-    def (self, command, max_attempts=3):
+    def _query_command(self, command, max_attempts=3):
         command_count = 0
         cmd_response = None
         exception = False
