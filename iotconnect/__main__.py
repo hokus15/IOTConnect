@@ -44,6 +44,7 @@ def main():
                             pub_config['class'])
                 Publisher = load_class(pub_config['class'])
                 pub_instance = Publisher(pub_config)
+                pub_instance.initialize()
                 Publishers.append(pub_instance)
                 logger.info('%s loaded', pub_instance.__class__.__name__)
             except (Exception) as err:
@@ -76,6 +77,7 @@ def main():
                 state_info = {'timestamp': int(round(time.time())),
                               'state': 'running'}
                 monitors_state_info = []
+                # Check monitors statate and start them if stopped
                 for mon in Monitors:
                     status = mon.check_thread()
                     if not status:
@@ -87,19 +89,20 @@ def main():
                                          mon.__class__.__name__, ex)
                     monitors_state_info.append({mon.__class__.__name__: 'started' if mon.check_thread() else 'stopped'})
                     state_info.update({'monitors': monitors_state_info})
-                    for pub in Publishers:
-                        try:
-                            if not pub.is_initialized():
-                                logger.warning('%s not initialized', pub.__class__.__name__)
-                                pub.initialize()
+                # Publish monitors states to all configured publishers and initialize publishers not initialized before.
+                for pub in Publishers:
+                    try:
+                        if not pub.is_initialized():
+                            logger.warning('%s not initialized', pub.__class__.__name__)
+                            pub.initialize()
 
-                            pub.publish('state', state_info)
-                        except Exception as ex:
-                            logger.error('Error publishing %s. %s',
-                                         pub.__class__.__name__, ex)
+                        pub.publish('state', state_info)
+                    except Exception as ex:
+                        logger.error('Error publishing %s. %s',
+                                     pub.__class__.__name__, ex)
 
-                    # Wait some time before cheking again the monitors
-                    time.sleep(15)
+                # Wait some time before cheking again the monitors
+                time.sleep(15)
         except (KeyboardInterrupt, SystemExit):  # when you press ctrl+c
             main_running = False
         except Exception as ex:
