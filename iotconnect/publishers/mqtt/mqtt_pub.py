@@ -21,42 +21,43 @@ class MQTTPublisher(Publisher):
         self._connection_retries = 0
 
     def initialize(self):
-        self._log.info("--- Initializing %s ... ---", self.__class__.__name__)
-        mqtt.Client.connected_flag = False
+        if not self._initialized:
+            self._log.info("--- Initializing %s ... ---", self.__class__.__name__)
+            mqtt.Client.connected_flag = False
 
-        # Create MQTT client
-        self._mqtt_client = mqtt.Client(client_id="IOTConnect-" + str(uuid.uuid4()),
-                                        protocol=mqtt.MQTTv311,
-                                        transport="tcp")
+            # Create MQTT client
+            self._mqtt_client = mqtt.Client(client_id="IOTConnect-" + str(uuid.uuid4()),
+                                            protocol=mqtt.MQTTv311,
+                                            transport="tcp")
 
-        # Assign callback functions
-        self._mqtt_client.on_publish = self._on_publish
-        self._mqtt_client.on_connect = self._on_connect
+            # Assign callback functions
+            self._mqtt_client.on_publish = self._on_publish
+            self._mqtt_client.on_connect = self._on_connect
 
-        # Set tls
-        self._mqtt_client.tls_set()
-        # Set user and password
-        self._mqtt_client.username_pw_set(self._user, self._password)
-        # Enable MQTT logger
-        self._mqtt_client.enable_logger(self._log)
-        # Start loop to process callbacks
-        self._mqtt_client.loop_start()
-        # Conect to MQTT server
-        while not self._mqtt_client.connected_flag and self._connection_retries < self._max_connection_retries:
-            self._log.debug("Trying to connect to MQTT server (%s)...", self._connection_retries + 1)
-            self._mqtt_client.connect(self._broker, self._port)
-            self._connection_retries += 1
-            time.sleep(5)
+            # Set tls
+            self._mqtt_client.tls_set()
+            # Set user and password
+            self._mqtt_client.username_pw_set(self._user, self._password)
+            # Enable MQTT logger
+            self._mqtt_client.enable_logger(self._log)
+            # Start loop to process callbacks
+            self._mqtt_client.loop_start()
+            # Conect to MQTT server
+            while not self._mqtt_client.connected_flag and self._connection_retries < self._max_connection_retries:
+                self._log.debug("Trying to connect to MQTT server (%s)...", self._connection_retries + 1)
+                self._mqtt_client.connect(self._broker, self._port)
+                self._connection_retries += 1
+                time.sleep(5)
 
-        if self._connection_retries >= self._max_connection_retries:
-            self._log.error("Could not connect to MQTT. Max attempts (%s) exceeded.", self._max_connection_retries)
-            self._log.info("--- %s could not be initialized ---", self.__class__.__name__)
-            raise Exception("Could not connect to MQTT. Max attempts ({}) exceeded."
-                            .format(self._max_connection_retries))
-        else:
-            self._connection_retries = 0
-            self._initialized = True
-            self._log.info("--- %s initialized ---", self.__class__.__name__)
+            if self._connection_retries >= self._max_connection_retries:
+                self._log.error("Could not connect to MQTT. Max attempts (%s) exceeded.", self._max_connection_retries)
+                self._log.info("--- %s could not be initialized ---", self.__class__.__name__)
+                raise Exception("Could not connect to MQTT. Max attempts ({}) exceeded."
+                                .format(self._max_connection_retries))
+            else:
+                self._connection_retries = 0
+                self._initialized = True
+                self._log.info("--- %s initialized ---", self.__class__.__name__)
 
     def _on_publish(self, client, userdata, mid):
         """MQTT function for on_publish callback."""
