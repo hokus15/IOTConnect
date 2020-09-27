@@ -76,19 +76,27 @@ def main():
                 state_info = {'timestamp': int(round(time.time())),
                               'state': 'running'}
                 monitors_state_info = []
-                for p in Monitors:
-                    status = p.check_thread()
+                for mon in Monitors:
+                    status = mon.check_thread()
                     if not status:
-                        logger.error('%s not started', p.__class__.__name__)
+                        logger.warning('%s not started', mon.__class__.__name__)
                         try:
-                            p.start()
+                            mon.start()
                         except Exception as ex:
                             logger.error('Error starting %s. %s',
-                                         p.__class__.__name__, ex)
-                    monitors_state_info.append({p.__class__.__name__: 'started' if p.check_thread() else 'stopped'})
+                                         mon.__class__.__name__, ex)
+                    monitors_state_info.append({mon.__class__.__name__: 'started' if mon.check_thread() else 'stopped'})
                     state_info.update({'monitors': monitors_state_info})
-                    for pb in Publishers:
-                        pb.publish('state', state_info)
+                    for pub in Publishers:
+                        try:
+                            if not pub.is_initialized():
+                                logger.warning('%s not initialized', pub.__class__.__name__)
+                                pub.initialize()
+
+                            pub.publish('state', state_info)
+                        except Exception as ex:
+                            logger.error('Error publishing %s. %s',
+                                         pub.__class__.__name__, ex)
 
                     # Wait some time before cheking again the monitors
                     time.sleep(15)

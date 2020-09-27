@@ -20,6 +20,8 @@ class MQTTPublisher(Publisher):
         self._max_connection_retries = self._config['connection_retries']
         self._connection_retries = 0
 
+    def initialize(self):
+        self._log.info("--- Initializing %s ... ---", self.__class__.__name__)
         mqtt.Client.connected_flag = False
 
         # Create MQTT client
@@ -28,8 +30,8 @@ class MQTTPublisher(Publisher):
                                         transport="tcp")
 
         # Assign callback functions
-        self._mqtt_client.on_publish = self.__on_publish
-        self._mqtt_client.on_connect = self.__on_connect
+        self._mqtt_client.on_publish = self._on_publish
+        self._mqtt_client.on_connect = self._on_connect
 
         # Set tls
         self._mqtt_client.tls_set()
@@ -53,13 +55,14 @@ class MQTTPublisher(Publisher):
                             .format(self._max_connection_retries))
         else:
             self._connection_retries = 0
+            self._initialized = True
             self._log.info("--- %s initialized ---", self.__class__.__name__)
 
-    def __on_publish(self, client, userdata, mid):
+    def _on_publish(self, client, userdata, mid):
         """MQTT function for on_publish callback."""
         self._log.debug("Publish message id: {}".format(mid))
 
-    def __on_connect(self, client, userdata, flags, rc):
+    def _on_connect(self, client, userdata, flags, rc):
         """MQTT function for on_connect callback."""
         if rc == 0:
             client.connected_flag = True  # set flag

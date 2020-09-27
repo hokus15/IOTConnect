@@ -9,6 +9,11 @@ class NoopPublisher(Publisher):
         Publisher.__init__(self, config)
         self._log = logging.getLogger('iotconnect.publishers.' + self.__class__.__name__)
 
+    def initialize(self):
+        self._log.info("--- Initializing %s ... ---", self.__class__.__name__)
+        self._initialized = True
+        self._log.info("--- %s initialized ---", self.__class__.__name__)
+
     def publish(self, context, data):
         pass
 
