@@ -4,3 +4,5 @@ iotconnect/iotconnect.config.json
 *.log
 
 __pycache__/
+
+site/
