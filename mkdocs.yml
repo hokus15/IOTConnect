@@ -1,5 +1,6 @@
 site_name: IOTConnect
 nav:
-    - Home: index.md
+    - Home: 'index.md'
+    - 'Getting started': 'Getting Started.md'
 theme:
   name: material
