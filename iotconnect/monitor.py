@@ -29,6 +29,10 @@ class Monitor:
                 now = time.time()
                 monitor_result = self.monitor()
                 for publisher in self._publishers:
+                    if not publisher.is_initialized():
+                        self._log.warning('%s not initialized', publisher.__class__.__name__)
+                        publisher.initialize()
+
                     for context, data in monitor_result.items():
                         publisher.publish(context, data)
             except (Exception) as err:
