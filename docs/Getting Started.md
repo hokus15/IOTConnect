@@ -34,7 +34,7 @@ sudo systemctl daemon-reload
 
 ## Configuration
 
-Configuration is located under the ```iotconnect``` folder and it's a json file that must be called ```iotconnect.config.json```.
+Configuration is located under the ```iotconnect``` folder and it's a json file that must be named ```iotconnect.config.json```.
 
 It consist in an array of publishers and an array of monitors. All monitored conditions are published to ALL configured publishers.
 
