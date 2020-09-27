@@ -1,0 +1,5 @@
+site_name: IOTConnect
+nav:
+    - Home: index.md
+theme:
+  name: material
