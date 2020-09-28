@@ -20,5 +20,17 @@ I'm a noob in python programming and I'm not a Linux expert so I'm pretty sure t
 ## Disclaimer
 IOTConnect (“THE SOFTWARE”) IS PROVIDED AS IS. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHOR MAKE NO WARRANTIES AS TO PERFORMANCE OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. NO ORAL OR WRITTEN COMMUNICATION FROM OR INFORMATION PROVIDED BY THE AUTHORS SHALL CREATE A WARRANTY. UNDER NO CIRCUMSTANCES SHALL THE AUTHORS BE LIABLE FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE, MISUSE, OR INABILITY TO USE THE SOFTWARE, EVEN IF THE AUTHOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY IN ALL JURISDICTIONS. YOU MAY HAVE ADDITIONAL RIGHTS AND SOME OF THESE LIMITATIONS MAY NOT APPLY TO YOU. THIS SOFTWARE IS ONLY INTENDED FOR SCIENTIFIC USAGE.
 
+## Credits
+All this work has been possible by putting together different pieces like:
+
+-   How To Article from [sochack.eu](https://tutorial.sochack.eu/en/how-to-soc/)
+-   [Ingesting GPS Data From Raspberry PI Zero Wireless With a USB GPS Device](https://dzone.com/articles/iot-ingesting-gps-data-from-raspberry-pi-zero-wire)
+-   [python-OBD](https://github.com/brendan-w/python-OBD/tree/master/obd)
+-   [EVNotiPi](https://github.com/EVNotify/EVNotiPi)
+-   [OBD-PIDs-for-HKMC-EVs](https://github.com/JejuSoul/OBD-PIDs-for-HKMC-EVs)
+-   [SoulEVSpy](https://github.com/langemand/SoulEVSpy)
+-   [Open Vehicles](https://github.com/openvehicles/)
+-   and of course lot of patience and [Google](https://www.google.com/)
+
 ## License
 [Apache-2.0 license](https://github.com/hokus15/IOTConnect/blob/master/LICENSE)
