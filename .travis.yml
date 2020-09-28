@@ -7,3 +7,9 @@ install:
 # command to run tests
 script:
   - python -m flake8
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
+  - mkdocs build --verbose --clean --strict
+  - if [ $TRAVIS_TEST_RESULT == 0 ]; then
+      mkdocs gh-deploy --force;
+    fi
