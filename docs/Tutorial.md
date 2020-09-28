@@ -245,7 +245,7 @@ If you are not getting GPS coordinates something may be wrong. Please google for
 
 ## Installing IOTConnect
 
-Follow the installation instructions from the [Getting started](../Getting%20Started/#installation) page.
+Follow the installation instructions from the [Getting started](Getting%20Started.md#installation) page.
 
 ### Prepare config files
 
@@ -277,7 +277,7 @@ If this works congratulations you are almost done!
 
 ## Run as a service
 
-Follow the run as a service instructions from [Getting started](../Getting%20Started/#run-as-a-service) page.
+Follow the run as a service instructions from [Getting started](Getting%20Started.md#run-as-a-service) page.
 
 ## Car WiFi
 To have WiFi in the car, I use a UBS powered stick that as soon as it get some power it startup, connects to the 4G LTE network and operates as a WiFi router.
