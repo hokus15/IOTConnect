@@ -3,7 +3,7 @@ python:
   - "3.7"
 # command to install dependencies
 install:
-  - python -m pip install flake8
+  - python -m pip install flake8 mkdocs mkdocs-material
 # command to run tests
 script:
   - python -m flake8
