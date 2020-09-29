@@ -5,9 +5,7 @@ Extensible Internet Of Things integration service written in Python that can be 
 
 It monitors the data from all configured monitors and publish the gathered data to all configured publishers.
 
-This repo is an evolution and an extensible version of [Pioniq](https://github.com/hokus15/pioniq).
-
-View code in [GitHub](https://github.com/hokus15/IOTConnect).
+This repo is an evolution and an extensible version of my other repo [Pioniq](https://github.com/hokus15/pioniq).
 
 ## Features
 -   **Connectivity:** Connect anything that can be monitored using python with your IOT hub using built in MQTTPublisher.
