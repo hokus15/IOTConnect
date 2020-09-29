@@ -4,8 +4,8 @@ site_description: 'Python Internet Of Things integration service'
 site_author: 'Jordi Morell'
 nav:
     - Home: 'index.md'
-    - 'Getting started': 'Getting Started.md'
-    - 'Extending IOTConnect': 'Extending IOTConnect.md'
+    - 'Getting started': 'GettingStarted.md'
+    - 'Extending IOTConnect': 'ExtendingIOTConnect.md'
     - 'Tutorial': 'Tutorial.md'
 theme:
   name: material
