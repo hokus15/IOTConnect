@@ -2,6 +2,7 @@ site_name: IOTConnect
 nav:
     - Home: 'index.md'
     - 'Getting started': 'Getting Started.md'
+    - 'Extending IOTConnect': 'Extending IOTConnect.md'
     - 'Tutorial': 'Tutorial.md'
 theme:
   name: material
