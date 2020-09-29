@@ -73,10 +73,10 @@ Change the default password by typing: `passwd`.
 
 Run raspi-config to Enable wait for network a boot (you may also want to change other settings such as Locale, Time Zone,...):
 
-1  Type: `sudo raspi-config`.
-2  Scroll down to `3 Boot Options` and press enter.
-3  Scroll down to `B2 Wait for Network at Boot` and press enter.
-4  Select `YES`
+1.  Type: `sudo raspi-config`.
+2.  Scroll down to `3 Boot Options` and press enter.
+3.  Scroll down to `B2 Wait for Network at Boot` and press enter.
+4.  Select `YES`
 
 This tells the Raspberry Pi to wait for a network during the boot process.
 
