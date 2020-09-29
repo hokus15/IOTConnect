@@ -9,3 +9,6 @@ nav:
     - 'Tutorial': 'Tutorial.md'
 theme:
   name: material
+plugins:
+    - search:
+        separator: '[\s\-\.]%20'
