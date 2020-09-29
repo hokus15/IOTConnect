@@ -14,12 +14,6 @@ View code in [GitHub](https://github.com/hokus15/IOTConnect).
 -   **Customization:** More systems and information can be monitored and published developing additional Monitors and Publishers.
 -   **Open-source:** You are welcome to improve the service by fixing bugs, adding functionality or developing your own Monitors and Publishers and make a pull request.
 
-## Informal disclaimer
-I'm a noob in python programming and I'm not a Linux expert so I'm pretty sure that the source code may be far from efficient, so don't be too hard with me if you find that I'm not following best practices neither doing things in the most optimal way. If you find that anything that can be improved (I'm sure it is), just raise a PR with your improvements or contact me.
-
-## Disclaimer
-IOTConnect (“THE SOFTWARE”) IS PROVIDED AS IS. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHOR MAKE NO WARRANTIES AS TO PERFORMANCE OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. NO ORAL OR WRITTEN COMMUNICATION FROM OR INFORMATION PROVIDED BY THE AUTHORS SHALL CREATE A WARRANTY. UNDER NO CIRCUMSTANCES SHALL THE AUTHORS BE LIABLE FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE, MISUSE, OR INABILITY TO USE THE SOFTWARE, EVEN IF THE AUTHOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY IN ALL JURISDICTIONS. YOU MAY HAVE ADDITIONAL RIGHTS AND SOME OF THESE LIMITATIONS MAY NOT APPLY TO YOU. THIS SOFTWARE IS ONLY INTENDED FOR SCIENTIFIC USAGE.
-
 ## Credits
 All this work has been possible by putting together different pieces like:
 
@@ -31,6 +25,12 @@ All this work has been possible by putting together different pieces like:
 -   [SoulEVSpy](https://github.com/langemand/SoulEVSpy)
 -   [Open Vehicles](https://github.com/openvehicles/)
 -   and of course lot of patience and [Google](https://www.google.com/)
+
+## Informal disclaimer
+I'm a noob in python programming and I'm not a Linux expert so I'm pretty sure that the source code may be far from efficient, so don't be too hard with me if you find that I'm not following best practices neither doing things in the most optimal way. If you find that anything that can be improved (I'm sure it is), just raise a PR with your improvements or contact me.
+
+## Disclaimer
+IOTConnect (“THE SOFTWARE”) IS PROVIDED AS IS. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHOR MAKE NO WARRANTIES AS TO PERFORMANCE OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. NO ORAL OR WRITTEN COMMUNICATION FROM OR INFORMATION PROVIDED BY THE AUTHORS SHALL CREATE A WARRANTY. UNDER NO CIRCUMSTANCES SHALL THE AUTHORS BE LIABLE FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE, MISUSE, OR INABILITY TO USE THE SOFTWARE, EVEN IF THE AUTHOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY IN ALL JURISDICTIONS. YOU MAY HAVE ADDITIONAL RIGHTS AND SOME OF THESE LIMITATIONS MAY NOT APPLY TO YOU. THIS SOFTWARE IS ONLY INTENDED FOR SCIENTIFIC USAGE.
 
 ## License
 [Apache-2.0 license](https://github.com/hokus15/IOTConnect/blob/master/LICENSE)
