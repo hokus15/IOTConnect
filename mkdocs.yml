@@ -1,4 +1,7 @@
 site_name: IOTConnect
+repo_url: https://github.com/hokus15/IOTConnect
+site_description: 'Python Internet Of Things integration service'
+site_author: 'Jordi Morell'
 nav:
     - Home: 'index.md'
     - 'Getting started': 'Getting Started.md'
