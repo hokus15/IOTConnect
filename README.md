@@ -16,6 +16,8 @@ This repo is an evolution and an extensible version of [Pioniq](https://github.c
 Available at [https://hokus15.github.io/IOTConnect/](https://hokus15.github.io/IOTConnect/).
 *Note that documentation is still under construction...*
 
+To learn how to install and configure from scratch IOTConnect in a RaspberryPi Zero W and read OBDII data from a Hyundai Ioniq EV 28kWh and including the GPS position and publish the data to a MQTT broker you can follow the [turorial](https://hokus15.github.io/IOTConnect/Tutorial/).
+
 ## Informal disclaimer
 I'm a noob in python programming and I'm not a Linux expert so I'm pretty sure that the source code may be far from efficient, so don't be too hard with me if you find that I'm not following best practices neither doing things in the most optimal way. If you find that anything that can be improved (I'm sure it is), just raise a PR with your improvements or contact me.
 
