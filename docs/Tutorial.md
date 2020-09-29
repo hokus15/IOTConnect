@@ -3,6 +3,7 @@
 In this tutorial we're going to learn how to install and configure from scratch IOTConnect in a RaspberryPi Zero W to read OBDII data from a Hyundai Ioniq EV 28kWh and the GPS position and publish to a MQTT broker.
 
 ## Needed Hardware
+
 -   [Raspberry Pi Zero W](https://www.amazon.es/Raspberry-Pi-Zero-wh/dp/B07BHMRTTY/ref=sr_1_5?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Raspberry+Pi+Zero+W&qid=1593189037&s=electronics&sr=1-5)
 -   [LTE Stick Huawei E3372](https://www.amazon.es/Huawei-E8372-Modem-WiFi-LTE/dp/B014WMEJ2Q/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=LTE+Stick+Huawei+E3372&qid=1600272912&s=electronics&sr=1-2)
 -   [ELM327 Bluetooth scanner](https://www.amazon.es/Bluetooth-Scanner-Diagn%C3%B3stico-Wireless-Mercedes/dp/B079HS1LWB/ref=sr_1_15?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=ELM327&qid=1593189429&s=electronics&sr=1-15)
@@ -26,6 +27,7 @@ The code and the following procedure has been designed and tested to use the Ras
 Use [Raspberry Pi Imager](https://www.raspberrypi.org/downloads/) for an easy way to install Raspberry Pi OS (and other operating systems) to an SD card.
 
 Once you have Raspberry Pi Imager installed open it and:
+
 -   Under `Choose OS` option select `Raspberry Pi OS (other)` and then choose `Raspberry Pi OS Lite (32-bit)`
 -   Choose your SD card
 -   and Write it
@@ -101,6 +103,7 @@ sudo apt-get install bluetooth bluez-tools blueman python3-pip git
 Now we're ready to pair the OBDII Bluetooth Dongle with Raspberry Pi.
 
 **IMPORTANT** Bellow requirements need to be met to pair the OBDII bluetooth with the Raspberry Pi:
+
 1.  OBDII dongle is plugged into the OBDII port of your car.
 2.  Raspberry Pi is within the range of the OBDII bluetooth dongle (~<5m).
 3.  Raspberry Pi is connected to the WiFi and accessible through ssh. During the pairing process, I use a powerbank to power the Raspberry Pi to keep it within the range of OBDII bluetooth and my home WiFi. In my case using the USB charger plugged into the car makes the RaspberryPi to be out of WiFi range.
