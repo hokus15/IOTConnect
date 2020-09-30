@@ -13,3 +13,6 @@ script:
   - if [ $TRAVIS_TEST_RESULT == 0 ]; then
       mkdocs gh-deploy --force;
     fi
+
+notifications:
+    slack: ${SLACK_TOKEN}
