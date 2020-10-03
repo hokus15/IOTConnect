@@ -105,7 +105,7 @@ class GpsMonitor(Monitor):
 
     def _handle_no_fix(self, message):
         self._retries += 1
-        self._log.warning(message)
+        # self._log.warning(message)
         if self._retries_before_reboot > 0 and self._retries >= self._retries_before_reboot:  # noqa: E501
             self._log.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             self._log.critical('! Too many times (%s) without fixing the position, REBOOTING in 5 seconds... !',
@@ -114,4 +114,7 @@ class GpsMonitor(Monitor):
             time.sleep(5)
             os.system('sudo reboot')
         else:
-            raise Exception('({}/{}) {}'.format(self._retries, self._retries_before_reboot, message))
+            if self._retries_before_reboot > 0:
+                raise Exception('({}/{}) {}'.format(self._retries, self._retries_before_reboot, message))
+            else:
+                raise Exception('({}) {}'.format(self._retries, message))
