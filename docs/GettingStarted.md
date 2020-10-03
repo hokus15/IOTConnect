@@ -115,6 +115,10 @@ It publishes the monitored data to an MQTT broker.
 
 ```topic_prefix```: Topic prefix that will be used to publish information.
 
+```qos```: QOS to be used when publishing to MQTT. Default 0.
+
+```retain```: Retain flag to be used when publishing to MQTT. Default True. 
+
 Note that ```context``` provided to the publish method will be appended to this topic. So if the ```topic_prefix``` is ```car/sensor/my-car/``` and the context is ```state``` the topic where the data will be published will be: ```car/sensor/my-car/state```.
 
 *Note that topic_prefix should end with forward slash ```/```.
