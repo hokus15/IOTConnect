@@ -67,7 +67,7 @@ class MQTTPublisher(Publisher):
 
     def _on_connect(self, client, userdata, flags, rc):
         """MQTT function for on_connect callback."""
-        if rc == 0:
+        if rc == mqtt.CONNACK_ACCEPTED:
             client.connected_flag = True  # set flag
             self._log.info("Successfully connected to MQTT broker")
         else:
@@ -81,7 +81,6 @@ class MQTTPublisher(Publisher):
                                            payload=json.dumps(data),
                                            qos=self._qos,
                                            retain=self._retain)
-        result.wait_for_publish()
         if (result.rc == 0):
             self._log.debug("Message successfully published: %s", str(result))
         else:
