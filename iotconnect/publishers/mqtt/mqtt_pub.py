@@ -18,6 +18,8 @@ class MQTTPublisher(Publisher):
         self._password = self._config['password']
         self._topic_prefix = self._config['topic_prefix']
         self._max_connection_retries = self._config['connection_retries']
+        self._qos = 0 if 'qos' not in self._config else self._config['qos']
+        self._retain = True if 'retain' not in self._config else self._config['retain'].lower() == 'true'
         self._connection_retries = 0
 
     def initialize(self):
@@ -77,8 +79,8 @@ class MQTTPublisher(Publisher):
                        json.dumps(data))
         result = self._mqtt_client.publish(topic=self._topic_prefix + context,
                                            payload=json.dumps(data),
-                                           qos=0,
-                                           retain=True)
+                                           qos=self._qos,
+                                           retain=self._retain)
         result.wait_for_publish()
         if (result.rc == 0):
             self._log.debug("Message successfully published: %s", str(result))

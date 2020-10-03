@@ -7,7 +7,9 @@
             "user": "broker-user",
             "password": "broker-password",
             "topic_prefix": "topic-prefix",
-            "connection_retries": 3
+            "connection_retries": 3,
+            "qos": 1,
+            "retain": true
          }
     ],
     "monitors":[
