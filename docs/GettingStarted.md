@@ -4,6 +4,14 @@ IOTConnect is an extensible framework written in Python that allows you to monit
 
 Both Monitors and Publishers can be extended to fit your needs by implementing Monitor and Publisher classes respectively.
 
+## Suggested hardware
+
+We will need a few things to get started with installing IOTConnect. Raspberry Pi Zero W can be a good and cheap staring point.
+
+-   Raspberry PI Zero W + Power supply.
+-   MicroSD card. Ideally get one that is Application Class 2 as they handle small I/O much more consistently than cards not optimized to host applications. The size depends on the usage you may want to give to IOTConnect.
+-  SD Card reader. This is already part of most laptops, but you can purchase a standalone USB adapter if you don’t have one. The brand doesn’t matter, just pick the cheapest.
+
 ## Installation
 
 Clone the Github repo:
@@ -36,7 +44,7 @@ sudo systemctl daemon-reload
 
 Configuration is located under the ```iotconnect``` folder and it's a json file that must be named ```iotconnect.config.json```.
 
-It consist in an array of publishers and an array of monitors. All monitored conditions are published to ALL configured publishers.
+It consist in an array of publishers and an array of monitors. Monitored conditions from monitors are published to ALL configured publishers.
 
 Every publisher in the array MUST have at least a ```class``` property specifying a valid class name.
 
@@ -61,87 +69,3 @@ Very simple dummy config file:
     ]
 }
 ```
-
-## Built-in publishers
-
-Publishers are classes that publish the monitored conditions to any destination. i.e: MQTT broker, REST service, log file,...
-
-IOTConnect comes with the following built-in publishers:
-
-### NoopPublisher
-
-This is the simplest of the publishers and it does nothing. It's simply there as a base demonstration to implement new publishers.
-
-#### Configuration
-
-```class```: Class name implementing the publisher.
-
-```"class": "iotconnect.publishers.noop.NoopPublisher"```
-
-Sample config:
-```
-{
-    "class": "iotconnect.publishers.noop.NoopPublisher"
- }
-```
-
-### MQTTPublisher
-
-It publishes the monitored data to an MQTT broker.
-
-*Current implementation ONLY supports TLS connections, user name and password authentication, and MQTTv311 protocol*.
-
-#### Configuration
-
-```class```: Class name implementing the publisher.
-
-```"class": "iotconnect.publishers.mqtt.MQTTPublisher"```
-
-```broker```: MQTT broker address.
-
-```"broker": "test.mosquitto.org"```
-
-```port```: MQTT broker port.
-
-```"port": 8883```
-
-```user```: MQTT user name.
-
-```"user": "my-user"```
-
-```password```: MQTT password.
-
-```"password": "super-secret-password"```
-
-```topic_prefix```: Topic prefix that will be used to publish information.
-
-```qos```: QOS to be used when publishing to MQTT. Default 0.
-
-```retain```: Retain flag to be used when publishing to MQTT. Default True. 
-
-Note that ```context``` provided to the publish method will be appended to this topic. So if the ```topic_prefix``` is ```car/sensor/my-car/``` and the context is ```state``` the topic where the data will be published will be: ```car/sensor/my-car/state```.
-
-*Note that topic_prefix should end with forward slash ```/```.
-
-```"topic_prefix": "car/sensor/my-car/"```
-
-```connection_retries```: Number of times the publisher will try to connect before giving up. Keep in mind that if the publisher is not initialized in the beginning, initialization will be retried every time a monitor tries to publish.
-
-```"connection_retries": 3```
-
-Sample config:
-```
-{
-    "class": "iotconnect.publishers.mqtt.MQTTPublisher",
-    "broker": "test.mosquitto.org",
-    "port": 8883,
-    "user": "my-user",
-    "password": "super-secret-password",
-    "topic_prefix": "car/sensor/my-car/",
-    "connection_retries": 3
- }
-```
-
-## Built in monitors
-
-TODO

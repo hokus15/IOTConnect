@@ -3,12 +3,31 @@ repo_url: https://github.com/hokus15/IOTConnect
 site_description: 'Python Internet Of Things integration service'
 site_author: 'Jordi Morell'
 nav:
-    - Home: 'index.md'
+  - 'Home': 'index.md'
+  - 'Getting started':
     - 'Getting started': 'GettingStarted.md'
-    - 'Extending IOTConnect': 'ExtendingIOTConnect.md'
+  - 'Monitors':
+    - 'Built-in monitors': 'Monitors.md'
+    - 'Noop Monitor': 'monitors/NoopMonitor.md'
+    - 'GPS Monitor': 'monitors/GPSMonitor.md'
+    - 'Hyundai Ioniq EV 28 kWh Monitor': 'monitors\HyundaiIoniqEV28.md'
+  - 'Publishers':
+    - 'Built-in publishers': 'Publishers.md'
+    - 'Noop Publisher': 'publishers/NoopPublisher.md'
+    - 'MQTT Publisher': 'publishers/MQTTPublisher.md'
+#  - 'Extending IOTConnect': 'ExtendingIOTConnect.md'
+  - 'Tutorial':
     - 'Tutorial': 'Tutorial.md'
 theme:
   name: material
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+  features:
+    - navigation.tabs
 plugins:
     - search:
         separator: '[\s\-\.]%20'
+
+markdown_extensions:
+    - attr_list
