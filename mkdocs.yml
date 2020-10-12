@@ -10,7 +10,7 @@ nav:
     - 'Built-in monitors': 'Monitors.md'
     - 'Noop Monitor': 'monitors/NoopMonitor.md'
     - 'GPS Monitor': 'monitors/GPSMonitor.md'
-    - 'Hyundai Ioniq EV 28 kWh Monitor': 'monitors\HyundaiIoniqEV28.md'
+    - 'Hyundai Ioniq EV 28 kWh Monitor': 'monitors/HyundaiIoniqEV28.md'
   - 'Publishers':
     - 'Built-in publishers': 'Publishers.md'
     - 'Noop Publisher': 'publishers/NoopPublisher.md'
