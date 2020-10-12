@@ -650,7 +650,7 @@ One of the caveats of using the existing 12V plugs is that those are only powere
 To be able to monitor the battery while the car is charging and not drain the 12V battery I've added a [new 12V plug](https://www.amazon.es/gp/product/B018OYOSHY/ref=ppx_yo_dt_b_asin_title_o09_s00?ie=UTF8&psc=1) that takes the power from the fuse box that it's ONLY active when the car engine is on or the car is charging.
 
 You can use the following fuse (IG3 2) to achieve this:
-![Fuse box](img/fuse-box.jpg)
+![Fuse box](assets/images/fuse-box.jpg)
 
 In order to make it easy to take the power from the fuse box I've used the following [adaptor](https://es.aliexpress.com/item/4000127647948.html?spm=a2g0s.9042311.0.0.2ae863c0a3Juau).
 
