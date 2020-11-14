@@ -9,6 +9,11 @@ script:
   - echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
   - mkdocs build --verbose --clean --strict
   - if [ $TRAVIS_TEST_RESULT == 0 ]; then mkdocs gh-deploy --force; fi
+after_success:
+  - git config --global user.name "semantic-release (via TravisCI)"
+  - git config --global user.email "semantic-release@travis"
+  - pip install python-semantic-release
+  - semantic-release publish
 notifications:
   slack:
     secure: nZVyBxw+TbapsoFCVpqdgqlw19WhAm/1Tw11TqVxQlXHN08Ic7vtqvWwAkNOuqLb3e9eA2uxmMrL5afzlI3+S1DhOxt7/Cq7yImO1RNnWcvr8zE5L9ODNnhed+gBhGHhZl/yVJsCMvuseISQxGM/79cdCgR2GLXTrM+ds0+zpz4fdSvs9hllm+tvu5WufZQwGz0aIwpI+ObB7oBljhu/Gzr/565HZEh9Hst8NrM/hu4E5yuLZqi5s9uxcI53H9KCeHUNGZLNxNlIcLLip0XGVv7HDKBq9IqUyFhfYEouoG9IZhvvsl3EMAfxf9mXp5BgHs3wlPTM90ZD0BdFIjJMstakvdFt4aFRFqyEeVFqPembYIZmQjV7liXGKhTgtXIVPq3QCfNYhYbFZsSs8dmwjx3g4RtvLcEvSIogOnC6sDYF62Ht3TM3HjoQ+i8Ijs+1w5NW+a3W/HBxSFF/jmufK+C1k8/IFBgnoVUw74//oX4kKIeBB1J9F11yI1KaTsTrwXxxWVq2q10y2iFrFjKtLcMiI+JRTdGUIJ3AcS1K/w1b4u7ge/QHYXADEcvR1PQmtQ0Q1X9u61KL0Wfasvi0+kAR6OzYeD4GziVs2kHuGSIEKtGiKXpLswLVb0wvOS38W9KZjpbp43FUbC2tOGMNsd94XgAzD+K8lN8h6Bw5neo=
