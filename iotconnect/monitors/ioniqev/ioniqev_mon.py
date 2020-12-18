@@ -2,6 +2,7 @@ import time
 import json
 import logging
 import obd
+from wrapt import synchronized
 from obd import OBDStatus
 from .commands import ext_commands
 from iotconnect.monitor import Monitor
@@ -245,6 +246,7 @@ class IoniqEVMonitor(Monitor):
         else:
             return external_temperature_info
 
+    @synchronized
     def monitor(self):
         monitor_result = {}
         self._log.info("*********** Monitoring data from IoniqEV ***********")
