@@ -10,6 +10,7 @@ User=pi
 Type=idle
 ExecStart=/usr/bin/python3 -m iotconnect
 # Redirect stderr to /dev/null to avoid logging twice to loggly (once from log file and another from stderr (StreamHandler))
+StandardOutput=null
 StandardError=null
 
 [Install]
