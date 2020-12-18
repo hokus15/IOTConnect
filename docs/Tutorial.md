@@ -271,7 +271,7 @@ To test that everything works, execute IOTConnect:
 
 Run the command:
 ```
-python3 -m /opt/IOTConnect/iotconnect
+python3 -m iotconnect
 ```
 
 This should publish the information to the configured destination.

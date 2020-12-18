@@ -14,6 +14,9 @@ We will need a few things to get started with installing IOTConnect. Raspberry P
 
 ## Installation
 
+!!! note
+    You can follow the [turorial](Tutorial.md) for step by step installation from scratch.
+
 Clone the Github repo:
 ```
 sudo git clone https://github.com/hokus15/IOTConnect.git /opt/IOTConnect
