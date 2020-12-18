@@ -112,7 +112,7 @@ def main():
             logger.info('=== Stopping monitors ===')
             for pl in Monitors[::-1]:  # reverse monitors
                 pl.stop()
-                logger.info('=== Closing publishers ===')
+            logger.info('=== Closing publishers ===')
             for pb in Publishers:
                 pb.close()
     except (MonitorError, PublisherError) as err:
