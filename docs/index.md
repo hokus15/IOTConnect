@@ -1,6 +1,5 @@
 # IOTConnect
-
-[![Build Status](https://img.shields.io/travis/hokus15/IOTConnect?logo=travis)](https://travis-ci.com/github/hokus15/IOTConnect) [![Code quality](https://app.codacy.com/project/badge/Grade/913d06cf965042e0808962a9ae238792)](https://www.codacy.com/manual/hokus15/IOTConnect/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hokus15/IOTConnect&amp;utm_campaign=Badge_Grade) ![License](https://img.shields.io/github/license/hokus15/IOTConnect) ![GitHub last commit](https://img.shields.io/github/last-commit/hokus15/IOTConnect?logo=github) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hokus15/IOTConnect?logo=github)
+![Version](https://img.shields.io/github/v/tag/hokus15/IOTConnect?label=version) [![Build Status](https://img.shields.io/travis/hokus15/IOTConnect?logo=travis)](https://travis-ci.com/github/hokus15/IOTConnect) [![Code quality](https://app.codacy.com/project/badge/Grade/913d06cf965042e0808962a9ae238792)](https://www.codacy.com/manual/hokus15/IOTConnect/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hokus15/IOTConnect&amp;utm_campaign=Badge_Grade) ![License](https://img.shields.io/github/license/hokus15/IOTConnect) ![GitHub last commit](https://img.shields.io/github/last-commit/hokus15/IOTConnect?logo=github) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hokus15/IOTConnect?logo=github)
 
 Extensible Internet Of Things integration service written in Python that can be run in a Raspberry Pi Zero W.
 
