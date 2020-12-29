@@ -3,6 +3,8 @@ Description=Python Internet Of Things integration service
 Wants=gpsd.service
 Wants=network-online.target
 After=network-online.target
+After=bluetooth.target
+Requires=bluetooth.target
 
 [Service]
 WorkingDirectory=/opt/IOTConnect
@@ -12,6 +14,7 @@ ExecStart=/usr/bin/python3 -m iotconnect
 # Redirect stderr to /dev/null to avoid logging twice to loggly (once from log file and another from stderr (StreamHandler))
 StandardOutput=null
 StandardError=null
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
