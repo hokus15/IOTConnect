@@ -201,6 +201,10 @@ class IoniqEVMonitor(Monitor):
         vmcu_info.update({'timestamp': int(round(vmcu_2101_resp.time))})
         vmcu_info.update(vmcu_2101_resp.value)
 
+        # VMCU2
+        vmcu_2102_resp = self._query_command(ext_commands["VMCU_2102"])
+        vmcu_info.update(vmcu_2102_resp.value)
+
         # Return exception when empty dict
         if not bool(vmcu_info):
             raise ValueError("Could not get VMCU information")

@@ -86,6 +86,15 @@ def vmcu_2101(messages):
                     )
 
 
+def vmcu_2102(messages):
+    """VMCU 2102 decoder."""
+    d = messages[0].data
+    if len(d) == 0:
+        return None
+    else:
+        return dict(auxBatteryCurrent=(bytes_to_int_signed(d[22:24]) / 1000.0) * -1.0)
+
+
 def bms_2101(messages):
     """BMS 2101 decoder."""
     d = messages[0].data
