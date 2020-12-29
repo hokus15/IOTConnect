@@ -106,11 +106,22 @@ def bms_2101(messages):
 
         battery_current = bytes_to_int_signed(d[12:14]) / 10.0
         battery_voltage = bytes_to_int(d[14:16]) / 10.0
+        bms_ignition = 1 if d[52] & 0x4 else 0  # 3rd bit is 1
+
+        aux_battery_voltage = d[31] / 10.0  # V
+        aux_battery_percent = 0.0
+        if bms_ignition == 1:
+            # When ignition is on min voltage: 12.8V; max voltage: 14.8V
+            aux_battery_percent = ((aux_battery_voltage - 12.8) * 100) / (14.8 - 12.8)
+        else:
+            # When ignition is off min voltage: 11.6V; max voltage: 12.8V
+            aux_battery_percent = ((aux_battery_voltage - 11.6) * 100) / (12.8 - 11.6)
 
         return dict(socBms=d[6] / 2.0,  # %
-                    bmsIgnition=1 if d[52] & 0x4 else 0,  # 3rd bit is 1
+                    bmsIgnition=bms_ignition,
                     bmsMainRelay=1 if charging_bits & 0x1 else 0,  # 1st bit is 1
-                    auxBatteryVoltage=d[31] / 10.0,  # V
+                    auxBatteryVoltage=aux_battery_voltage,
+                    auxBatteryPercent=aux_battery_percent,  # %
 
                     charging=charging,
                     normalChargePort=1 if charging_bits & 0x20 else 0,  # 6th bit is 1
