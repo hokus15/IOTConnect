@@ -3,6 +3,7 @@ from .utils import bytes_to_int_signed
 
 # flake8: noqa E501
 
+
 def external_temperature(messages):
     """External temperature decoder."""
     d = messages[0].data
@@ -57,8 +58,8 @@ def tpms(messages):
                     )
 
 
-def vmcu(messages):
-    """VMCU decoder."""
+def vmcu_2101(messages):
+    """VMCU 2101 decoder."""
     d = messages[0].data
     if len(d) == 0:
         return None
@@ -77,7 +78,8 @@ def vmcu(messages):
         brakes_bits = d[8]
 
         return dict(gear=gear_str,
-                    speed=(((d[16] * 256) + d[15]) / 100.0) * 1.60934,  # kmh. Multiplied by 1.60934 to convert mph to kmh
+                    # kmh. Multiplied by 1.60934 to convert mph to kmh
+                    speed=(((d[16] * 256) + d[15]) / 100.0) * 1.60934,
                     accel_pedal_depth=d[16] / 2,  # %
                     brake_lamp=1 if brakes_bits & 0x1 else 0,  # 1st bit is 1
                     brakes_on=0 if brakes_bits & 0x2 else 1  # 2nd bit is 0
