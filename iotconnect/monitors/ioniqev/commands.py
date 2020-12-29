@@ -3,7 +3,6 @@ from obd.protocols import ECU
 from obd.decoders import raw_string
 from .decoders import bms_2101, cell_voltages, bms_2105, odometer, vin
 from .decoders import vmcu_2101, vmcu_2102, tpms, external_temperature
-from .decoders import air_con_220100
 
 # flake8: noqa E501
 
@@ -40,9 +39,9 @@ ext_commands = {
     # length 99
     'VMCU_1A80':              OBDCommand("VMCU_1A80",                "Extended command - Vehicle Identification Number",                             b"1A80",      0, vin,                  ECU.ALL,     False),
     # length 22
-    'VMCU_2101':              OBDCommand("VMCU_2101",                "Extended command - VMCU information",                                          b"2101",      0, vmcu_2101,                 ECU.ALL,     False),
+    'VMCU_2101':              OBDCommand("VMCU_2101",                "Extended command - VMCU information",                                          b"2101",      0, vmcu_2101,            ECU.ALL,     False),
     # Pending to define decoder
-    'VMCU_2102':              OBDCommand("VMCU_2102",                "Extended command - Aux battery current information",                           b"2102",      0, vmcu_2102,           ECU.ALL,     False),
+    'VMCU_2102':              OBDCommand("VMCU_2102",                "Extended command - Aux battery current information",                           b"2102",      0, vmcu_2102,            ECU.ALL,     False),
     # length 23
     'TPMS_22C00B':            OBDCommand("TPMS_22C00B",              "Extended command - TPMS information",                                          b"22C00B",    0, tpms,                 ECU.ALL,     False),
     # length 25
@@ -52,7 +51,7 @@ ext_commands = {
     # Pending to define decoder
     'IGPM_22BC06':            OBDCommand("IGPM_22BC06",              "Extended command - Brake lights",                                              b"22BC06",    0, raw_string,           ECU.ALL,     False),
     # Pending to define decoder
-    'AIR_CON 220100':         OBDCommand("AIR_CON 220100",           "Extended command - Indoor / outdoor temperature",                              b"220100",    0, air_con_220100,       ECU.ALL,     False),
+    'AIR_CON 220100':         OBDCommand("AIR_CON 220100",           "Extended command - Indoor / outdoor temperature",                              b"220100",    0, raw_string,           ECU.ALL,     False),
     # Pending to define decoder
     'AIR_CON 220102':         OBDCommand("AIR_CON 220102",           "Extended command - Coolant temperature",                                       b"220102",    0, raw_string,           ECU.ALL,     False)
 }
