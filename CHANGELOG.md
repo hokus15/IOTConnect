@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2020-12-29)
+### Feature
+* **IoniqEVMonitor:** Added aux Battery soc in percentaje information. ([`b43326b`](https://github.com/hokus15/IOTConnect/commit/b43326b2e446bb03370b1e356d3f55c4bd1cc470))
+* **IoniqEVMonitor:** Added aux battery current. ([`829e810`](https://github.com/hokus15/IOTConnect/commit/829e810076bf4d1cfc044c93cba606b76e7d1f24))
+
+### Fix
+* **commands:** Fix undefined decoders ([`47f7e9d`](https://github.com/hokus15/IOTConnect/commit/47f7e9df0fb7de6e01807e073b8ccbdb01dfcd56))
+* **commands:** Refactor commands adding more descriptive information. ([`a6376df`](https://github.com/hokus15/IOTConnect/commit/a6376df7ca2af9e0e33179fd19016f0800067e5c))
+
 ## v0.3.3 (2020-12-29)
 ### Fix
 * **ioniqev_mon:** Make fast and timeout parameters for OBDII connection configurable. ([`ee7a1d6`](https://github.com/hokus15/IOTConnect/commit/ee7a1d6d32e579b763d251d3ab4bda858a68858c))
