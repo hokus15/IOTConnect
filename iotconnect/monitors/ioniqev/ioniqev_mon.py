@@ -29,8 +29,8 @@ class IoniqEVMonitor(Monitor):
         self._log = logging.getLogger('iotconnect.monitors.' + self.__class__.__name__)
         self._port = config['port']
         self._baudrate = None if 'baudrate' not in self._config else int(config['baudrate'])
-        self._fast = False
-        self._timeout = 30
+        self._fast = False if 'fast' not in self._config else self._config['fast'].lower() == 'true'
+        self._timeout = 30 if 'timeout' not in self._config else int(config['timeout'])
         self._max_attempts = 3
         self._battery_capacity = 28
         self._connection = None
