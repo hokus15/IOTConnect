@@ -3,6 +3,7 @@ from .utils import bytes_to_int_signed
 
 # flake8: noqa E501
 
+
 def external_temperature(messages):
     """External temperature decoder."""
     d = messages[0].data
@@ -57,8 +58,8 @@ def tpms(messages):
                     )
 
 
-def vmcu(messages):
-    """VMCU decoder."""
+def vmcu_2101(messages):
+    """VMCU 2101 decoder."""
     d = messages[0].data
     if len(d) == 0:
         return None
@@ -77,11 +78,21 @@ def vmcu(messages):
         brakes_bits = d[8]
 
         return dict(gear=gear_str,
-                    speed=(((d[16] * 256) + d[15]) / 100.0) * 1.60934,  # kmh. Multiplied by 1.60934 to convert mph to kmh
+                    # kmh. Multiplied by 1.60934 to convert mph to kmh
+                    speed=(((d[16] * 256) + d[15]) / 100.0) * 1.60934,
                     accel_pedal_depth=d[16] / 2,  # %
                     brake_lamp=1 if brakes_bits & 0x1 else 0,  # 1st bit is 1
                     brakes_on=0 if brakes_bits & 0x2 else 1  # 2nd bit is 0
                     )
+
+
+def vmcu_2102(messages):
+    """VMCU 2102 decoder."""
+    d = messages[0].data
+    if len(d) == 0:
+        return None
+    else:
+        return dict(auxBatteryCurrent=(bytes_to_int_signed(d[22:24]) / 1000.0) * -1.0)
 
 
 def bms_2101(messages):
@@ -95,11 +106,22 @@ def bms_2101(messages):
 
         battery_current = bytes_to_int_signed(d[12:14]) / 10.0
         battery_voltage = bytes_to_int(d[14:16]) / 10.0
+        bms_ignition = 1 if d[52] & 0x4 else 0  # 3rd bit is 1
+
+        aux_battery_voltage = d[31] / 10.0  # V
+        aux_battery_percent = 0.0
+        if bms_ignition == 1:
+            # When ignition is on min voltage: 12.8V; max voltage: 14.8V
+            aux_battery_percent = ((aux_battery_voltage - 12.8) * 100) / (14.8 - 12.8)
+        else:
+            # When ignition is off min voltage: 11.6V; max voltage: 12.8V
+            aux_battery_percent = ((aux_battery_voltage - 11.6) * 100) / (12.8 - 11.6)
 
         return dict(socBms=d[6] / 2.0,  # %
-                    bmsIgnition=1 if d[52] & 0x4 else 0,  # 3rd bit is 1
+                    bmsIgnition=bms_ignition,
                     bmsMainRelay=1 if charging_bits & 0x1 else 0,  # 1st bit is 1
-                    auxBatteryVoltage=d[31] / 10.0,  # V
+                    auxBatteryVoltage=aux_battery_voltage,
+                    auxBatteryPercent=aux_battery_percent,  # %
 
                     charging=charging,
                     normalChargePort=1 if charging_bits & 0x20 else 0,  # 6th bit is 1

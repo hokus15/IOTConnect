@@ -322,6 +322,7 @@ BMS (Battery Management System) information is published from `IoniqEVMonitor` i
    bmsIgnition                     0 or 1          Car ignition. 0: false, 1: true.
    bmsMainRelay                    0 or 1          BMS main relay. 0: false, 1: true.
    auxBatteryVoltage               float           Aux battery voltage in V.
+   auxBatteryPercent               float           Aux battery percentaje.
    charging                        0 or 1          Is the car charging ? 0: false, 1: true.
    normalChargePort                0 or 1          Is charging using normal charge port? 0: false, 1: true.
    rapidChargePort                 0 or 1          Is charging using rapid charge port? 0: false, 1: true.
@@ -368,6 +369,7 @@ Sample:
    "bmsIgnition": 1,
    "bmsMainRelay": 1,
    "auxBatteryVoltage":14.5,
+   "auxBatteryPercent":50.0,
    "charging":0,
    "normalChargePort":0,
    "rapidChargePort":0,
@@ -536,6 +538,7 @@ Vehicle Motor Control Unit information is published from `IoniqEVMonitor` in the
    accel_pedal_depth integer Accelerator pedal depth in %.
    brake_lamp        0 or 1  0 brake lamp is off, 1 brake lamp is on.
    brakes_on         0 or 1  0 brakes are off, 1 brakes are on.
+   auxBatteryCurrent float   Aux battery current in A. PENDING TO VERIFY THAT IS CORRECT!!!!!!!!!!!!!!
 }
 ```
 
@@ -548,7 +551,8 @@ Sample:
    "speed": 67.0,
    "accel_pedal_depth": 28,
    "brake_lamp": 0,
-   "brakes_on": 0
+   "brakes_on": 0,
+   "auxBatteryCurrent": -0.052
 }
 ```
 

@@ -92,7 +92,7 @@ class IoniqEVMonitor(Monitor):
         self._log.info("**** Querying battery information ****")
         battery_info = {}
         # Set header to 7E4
-        self._query_command(ext_commands["CAN_HEADER_7E4"])
+        self._query_command(ext_commands["BMS_CAN_HEADER_7E4"])
         # Set the CAN receive address to 7EC
         self._query_command(ext_commands["CAN_RECEIVE_ADDRESS_7EC"])
 
@@ -164,13 +164,13 @@ class IoniqEVMonitor(Monitor):
         self._log.info("**** Querying odometer ****")
         odometer_info = {}
         # Set header to 7C6
-        self._query_command(ext_commands["CAN_HEADER_7C6"])
+        self._query_command(ext_commands["CLU_CAN_HEADER_7C6"])
         # Set the CAN receive address to 7EC
         self._query_command(ext_commands["CAN_RECEIVE_ADDRESS_7EC"])
         # Sets the ID filter to 7CE
         self._query_command(ext_commands["CAN_FILTER_7CE"])
         # Query odometer
-        odometer_resp = self._query_command(ext_commands["ODOMETER_22B002"])
+        odometer_resp = self._query_command(ext_commands["CLU_22B002"])
 
         # Only set odometer data if present.
         # Not available when car engine is off
@@ -187,12 +187,12 @@ class IoniqEVMonitor(Monitor):
         self._log.info("**** Querying VMCU ****")
         vmcu_info = {}
         # Set header to 7E2
-        self._query_command(ext_commands["CAN_HEADER_7E2"])
+        self._query_command(ext_commands["VMCU_CAN_HEADER_7E2"])
         # Set the CAN receive address to 7EA
         self._query_command(ext_commands["CAN_RECEIVE_ADDRESS_7EA"])
 
         # VIN
-        vin_resp = self._query_command(ext_commands["VIN_1A80"])
+        vin_resp = self._query_command(ext_commands["VMCU_1A80"])
         # Add vin to vmcu info
         vmcu_info.update(vin_resp.value)
 
@@ -200,6 +200,10 @@ class IoniqEVMonitor(Monitor):
         vmcu_2101_resp = self._query_command(ext_commands["VMCU_2101"])
         vmcu_info.update({'timestamp': int(round(vmcu_2101_resp.time))})
         vmcu_info.update(vmcu_2101_resp.value)
+
+        # VMCU2
+        vmcu_2102_resp = self._query_command(ext_commands["VMCU_2102"])
+        vmcu_info.update(vmcu_2102_resp.value)
 
         # Return exception when empty dict
         if not bool(vmcu_info):
@@ -211,7 +215,7 @@ class IoniqEVMonitor(Monitor):
         self._log.info("**** Querying for TPMS information ****")
         tpms_info = {}
         # Set header to 7A0
-        self._query_command(ext_commands["CAN_HEADER_7A0"])
+        self._query_command(ext_commands["TPMS_CAN_HEADER_7A0"])
         # Set the CAN receive address to 7A8
         self._query_command(ext_commands["CAN_RECEIVE_ADDRESS_7A8"])
         # Query TPMS
@@ -231,7 +235,7 @@ class IoniqEVMonitor(Monitor):
         external_temperature_info = {}
         # Set header to 7E6
         self._query_command(ext_commands["CAN_HEADER_7E6"])
-        # Set the CAN receive address to 7EC
+        # Set the CAN receive address to 7EE
         self._query_command(ext_commands["CAN_RECEIVE_ADDRESS_7EE"])
         # Query external temeprature
         ext_temp_resp = self._query_command(ext_commands["EXT_TEMP_2180"])
@@ -290,7 +294,7 @@ class IoniqEVMonitor(Monitor):
                               exc_info=False)
 
         try:
-            # Add external temperture information to poll result
+            # Add external temperature information to poll result
             external_temperature_info = self._query_external_temperature_info()
             monitor_result.update({"ext_temp": external_temperature_info})
             self._log.info("type: ext_temp, data: %s",
