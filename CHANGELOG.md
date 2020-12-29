@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.3 (2020-12-29)
+### Fix
+* **ioniqev_mon:** Make fast and timeout parameters for OBDII connection configurable. ([`ee7a1d6`](https://github.com/hokus15/IOTConnect/commit/ee7a1d6d32e579b763d251d3ab4bda858a68858c))
+* **ioniqev_mon:** Make baudrate param optional. ([`aca1d4a`](https://github.com/hokus15/IOTConnect/commit/aca1d4a746d358b6abd662d95f98d0a1845dff46))
+* **service:** Wait for bluetooth to be online before starting the service. ([`2454e76`](https://github.com/hokus15/IOTConnect/commit/2454e76040d298de968e4e8c8111468a5d1f7488))
+
 ## v0.3.2 (2020-12-18)
 ### Fix
 * **log:** Fix log message ([`93dc1b8`](https://github.com/hokus15/IOTConnect/commit/93dc1b833245287b144bdb697304e99fb91b7ccf))
