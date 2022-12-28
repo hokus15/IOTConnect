@@ -15,6 +15,7 @@ ExecStart=/usr/bin/python3 -m iotconnect
 StandardOutput=null
 StandardError=null
 Restart=always
+KillSignal=SIGINT
 
 [Install]
 WantedBy=multi-user.target
