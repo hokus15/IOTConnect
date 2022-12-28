@@ -69,7 +69,7 @@ class IoniqEVMonitor(Monitor):
                 cmd_response = self._connection.query(command, force=True)
             except Exception:
                 exception = True
-            valid_response = (not(cmd_response is None
+            valid_response = (not (cmd_response is None
                                   or cmd_response.is_null()
                                   or cmd_response.value is None
                                   or cmd_response.value == "?"
