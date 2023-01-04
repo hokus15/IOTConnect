@@ -35,6 +35,7 @@ class MQTTPublisher(Publisher):
             # Assign callback functions
             self._mqtt_client.on_publish = self._on_publish
             self._mqtt_client.on_connect = self._on_connect
+            self._mqtt_client.on_disconnect = self._on_disconnect
 
             # Set tls
             self._mqtt_client.tls_set()
@@ -53,7 +54,7 @@ class MQTTPublisher(Publisher):
 
             if self._connection_retries >= self._max_connection_retries:
                 self._log.error("Could not connect to MQTT. Max attempts (%s) exceeded.", self._max_connection_retries)
-                self._log.info("--- %s could not be initialized ---", self.__class__.__name__)
+                self._log.warn("--- %s could not be initialized ---", self.__class__.__name__)
                 raise Exception("Could not connect to MQTT. Max attempts ({}) exceeded."
                                 .format(self._max_connection_retries))
             else:
@@ -71,10 +72,15 @@ class MQTTPublisher(Publisher):
             client.connected_flag = True  # set flag
             self._log.info("Successfully connected to MQTT broker")
         else:
-            self._log.debug("Could not connect to MQTT broker. Return code: %s", rc)
+            self._log.warn("Could not connect to MQTT broker. Return code: %s", rc)
+
+    def _on_disconnect(self, client, userdata, rc):
+        """MQTT function for on_disconnect callback."""
+        client.connected_flag = False  # set flag
+        self._log.warn("Disconnected from MQTT broker")
 
     def publish(self, context, data):
-        self._log.info("context: '%s', payload: '%s'",
+        self._log.info("Publish: context: '%s', payload: '%s'",
                        self._topic_prefix + context,
                        json.dumps(data))
         result = self._mqtt_client.publish(topic=self._topic_prefix + context,
@@ -82,13 +88,14 @@ class MQTTPublisher(Publisher):
                                            qos=self._qos,
                                            retain=self._retain)
         if (result.rc == 0):
-            self._log.debug("Message successfully published: %s", str(result))
+            self._log.info("Publish success: %s", str(result))
         else:
-            self._log.error("Error publishing message: %s", str(result))
+            self._log.error("Publish error: %s", str(result))
+            self.close()
 
     def close(self):
         self._log.info("--- Closing %s ---", self.__class__.__name__)
-        self._log.info("Disconnecting from MQTT broker")
-        self._mqtt_client.loop_stop()
         self._mqtt_client.disconnect()
+        self._mqtt_client.loop_stop()
+        self._initialized = False
         self._log.info("--- %s closed ---", self.__class__.__name__)
