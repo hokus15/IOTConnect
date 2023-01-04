@@ -654,7 +654,7 @@ You can use the following fuse (IG3 2) to achieve this:
 
 In order to make it easy to take the power from the fuse box I've used the following [adaptor](https://es.aliexpress.com/item/4000127647948.html?spm=a2g0s.9042311.0.0.2ae863c0a3Juau).
 
-## Online log management tool - Loggly installation
-As the Raspberry Pi will usually run in your car's WiFi it is going to be complex for you to debug problems or even look at the log files. For that I'm using a Log Management tool in the cloud that offers a free tier that is more than enough for the purpose of this project (200 MB/day and 7 days log retention).
+## Online log management tool - Logtail installation
+As the Raspberry Pi will usually run in your car's WiFi it is going to be complex for you to debug problems or even look at the log files. For that I'm using a Log Management tool in the cloud that offers a free tier that is more than enough for the purpose of this project (1 GB/month and 3 days log retention).
 
-Just create a free account in [Loggly](https://www.loggly.com/) and follow instructions on how to [Linux Log File Monitoring](https://documentation.solarwinds.com/en/Success_Center/loggly/Content/admin/file-monitoring.htm).
+Just create a free account in [Logtail](https://logtail.com/) create a Python source, and copy & paste your Source token to the Logtail handler in logging.conf file.
