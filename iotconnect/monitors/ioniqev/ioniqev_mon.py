@@ -69,12 +69,12 @@ class IoniqEVMonitor(Monitor):
                 cmd_response = self._connection.query(command, force=True)
             except Exception:
                 exception = True
-            valid_response = (not(cmd_response is None
-                                  or cmd_response.is_null()
-                                  or cmd_response.value is None
-                                  or cmd_response.value == "?"
-                                  or cmd_response.value == ""
-                                  or exception))
+            valid_response = (not (cmd_response is None
+                                   or cmd_response.is_null()
+                                   or cmd_response.value is None
+                                   or cmd_response.value == "?"
+                                   or cmd_response.value == ""
+                                   or exception))
             if not valid_response and command_count < max_attempts:
                 self._log.warning("No valid response for %s. Retrying in %s second(s)...",
                                   command,

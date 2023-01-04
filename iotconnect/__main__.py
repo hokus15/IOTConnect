@@ -25,7 +25,9 @@ def main():
     logger = logging.getLogger('iotconnect')
     logging.config.fileConfig('iotconnect/logging.conf')
     try:
+        logger.info('============================================================================')
         logger.info('======================= Starting IOTConnect (v%s) =======================' % __version__)
+        logger.info('============================================================================')
         Monitors = []
         Publishers = []
         try:
@@ -81,7 +83,7 @@ def main():
                 for mon in Monitors:
                     status = mon.check_thread()
                     if not status:
-                        logger.warning('%s not started', mon.__class__.__name__)
+                        logger.warning('%s not started, let\'s try to start it.', mon.__class__.__name__)
                         try:
                             mon.start()
                         except Exception as ex:
@@ -93,17 +95,18 @@ def main():
                 for pub in Publishers:
                     try:
                         if not pub.is_initialized():
-                            logger.warning('%s not initialized', pub.__class__.__name__)
+                            logger.warning('%s not initialized, let\'s try to initialize it.', pub.__class__.__name__)
                             pub.initialize()
 
                         pub.publish('state', state_info)
                     except Exception as ex:
-                        logger.error('Error publishing %s. %s',
+                        logger.error('Error publishing with %s: %s',
                                      pub.__class__.__name__, ex)
 
                 # Wait some time before cheking again the monitors
                 time.sleep(15)
         except (KeyboardInterrupt, SystemExit):  # when you press ctrl+c
+            logger.warn('IOTConnect execution cancelled by user.')
             main_running = False
         except Exception as ex:
             main_running = False
