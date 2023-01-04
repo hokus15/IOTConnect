@@ -1,0 +1,1602 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python Internet Of Things integration service">
+      
+      
+        <meta name="author" content="Jordi Morell">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.2.7">
+    
+    
+      
+        <title>Tutorial - IOTConnect</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9d5733d3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="IOTConnect" class="md-header__button md-logo" aria-label="IOTConnect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IOTConnect
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hokus15/IOTConnect/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../GettingStarted/" class="md-tabs__link">
+        Getting started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Monitors/" class="md-tabs__link">
+        Monitors
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Publishers/" class="md-tabs__link">
+        Publishers
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Tutorial
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="IOTConnect" class="md-nav__button md-logo" aria-label="IOTConnect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IOTConnect
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hokus15/IOTConnect/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GettingStarted/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Monitors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitors" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Monitors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Monitors/" class="md-nav__link">
+        Built-in monitors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/NoopMonitor/" class="md-nav__link">
+        Noop Monitor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/GPSMonitor/" class="md-nav__link">
+        GPS Monitor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/HyundaiIoniqEV28/" class="md-nav__link">
+        Hyundai Ioniq EV 28 kWh Monitor
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Publishers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Publishers" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Publishers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Publishers/" class="md-nav__link">
+        Built-in publishers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishers/NoopPublisher/" class="md-nav__link">
+        Noop Publisher
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishers/MQTTPublisher/" class="md-nav__link">
+        MQTT Publisher
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tutorial
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#needed-hardware" class="md-nav__link">
+    Needed Hardware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-os" class="md-nav__link">
+    Install the OS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wlan-and-ssh-configuration" class="md-nav__link">
+    WLAN and SSH configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-raspberry-pi-startup" class="md-nav__link">
+    First Raspberry Pi startup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-intallation" class="md-nav__link">
+    Package intallation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairing-obdii-bluetooth-dongle-with-raspberry-pi" class="md-nav__link">
+    Pairing OBDII Bluetooth Dongle with Raspberry Pi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-gps" class="md-nav__link">
+    Configuring the GPS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring" class="md-nav__link">
+    Wiring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-iotconnect" class="md-nav__link">
+    Installing IOTConnect
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing IOTConnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-config-files" class="md-nav__link">
+    Prepare config files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-the-script" class="md-nav__link">
+    Execute the script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-as-a-service" class="md-nav__link">
+    Run as a service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#car-wifi" class="md-nav__link">
+    Car WiFi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types-and-data-format" class="md-nav__link">
+    Data types and data format
+  </a>
+  
+    <nav class="md-nav" aria-label="Data types and data format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    state
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#battery" class="md-nav__link">
+    battery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odometer" class="md-nav__link">
+    odometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmcu" class="md-nav__link">
+    vmcu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tpms" class="md-nav__link">
+    tpms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-temperature" class="md-nav__link">
+    external temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    location
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-when-charging" class="md-nav__link">
+    Monitor when charging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-log-management-tool-logtail-installation" class="md-nav__link">
+    Online log management tool - Logtail installation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#needed-hardware" class="md-nav__link">
+    Needed Hardware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-os" class="md-nav__link">
+    Install the OS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wlan-and-ssh-configuration" class="md-nav__link">
+    WLAN and SSH configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-raspberry-pi-startup" class="md-nav__link">
+    First Raspberry Pi startup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-intallation" class="md-nav__link">
+    Package intallation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairing-obdii-bluetooth-dongle-with-raspberry-pi" class="md-nav__link">
+    Pairing OBDII Bluetooth Dongle with Raspberry Pi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-gps" class="md-nav__link">
+    Configuring the GPS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring" class="md-nav__link">
+    Wiring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-iotconnect" class="md-nav__link">
+    Installing IOTConnect
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing IOTConnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-config-files" class="md-nav__link">
+    Prepare config files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-the-script" class="md-nav__link">
+    Execute the script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-as-a-service" class="md-nav__link">
+    Run as a service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#car-wifi" class="md-nav__link">
+    Car WiFi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types-and-data-format" class="md-nav__link">
+    Data types and data format
+  </a>
+  
+    <nav class="md-nav" aria-label="Data types and data format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    state
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#battery" class="md-nav__link">
+    battery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odometer" class="md-nav__link">
+    odometer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmcu" class="md-nav__link">
+    vmcu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tpms" class="md-nav__link">
+    tpms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-temperature" class="md-nav__link">
+    external temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    location
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-when-charging" class="md-nav__link">
+    Monitor when charging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-log-management-tool-logtail-installation" class="md-nav__link">
+    Online log management tool - Logtail installation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/hokus15/IOTConnect/edit/master/docs/Tutorial.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="tutorial">Tutorial</h1>
+<p>In this tutorial we're going to learn how to install and configure from scratch IOTConnect in a RaspberryPi Zero W to read OBDII data from a Hyundai Ioniq EV 28kWh and the GPS position and publish to a MQTT broker.</p>
+<h2 id="needed-hardware">Needed Hardware</h2>
+<ul>
+<li><a href="https://www.amazon.es/Raspberry-Pi-Zero-wh/dp/B07BHMRTTY/ref=sr_1_5?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=Raspberry+Pi+Zero+W&amp;qid=1593189037&amp;s=electronics&amp;sr=1-5">Raspberry Pi Zero W</a></li>
+<li><a href="https://www.amazon.es/Huawei-E8372-Modem-WiFi-LTE/dp/B014WMEJ2Q/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=LTE+Stick+Huawei+E3372&amp;qid=1600272912&amp;s=electronics&amp;sr=1-2">LTE Stick Huawei E3372</a></li>
+<li><a href="https://www.amazon.es/Bluetooth-Scanner-Diagn%C3%B3stico-Wireless-Mercedes/dp/B079HS1LWB/ref=sr_1_15?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=ELM327&amp;qid=1593189429&amp;s=electronics&amp;sr=1-15">ELM327 Bluetooth scanner</a></li>
+<li><a href="https://www.amazon.es/gp/product/B01HYZ8QPO/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1">USB car charger</a></li>
+<li><a href="https://www.amazon.es/GlobalSat-BU-353-S4-Receptor-SiRF-Star/dp/B008200LHW/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;crid=2ENXQ7W8O8JQE">USB GPS receiver GlobalSat BU-353-S4</a></li>
+<li><a href="https://www.amazon.es/Cable-SODIAL-enchufe-extnsion-conector/dp/B01EIYCERU/ref=sr_1_25?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=alargador+USB&amp;qid=1593189217&amp;s=electronics&amp;sr=1-25">USB cable extender</a></li>
+<li><a href="https://www.amazon.es/gp/product/B003YKX6WM/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&amp;psc=1">USB to Micro USB adapter</a></li>
+<li><a href="https://www.amazon.es/UGREEN-10396P-Hembra-Tel%C3%A9fono-Paquete/dp/B00N9S9Z0G/ref=sr_1_3?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=usb+female+to+micro+usb&amp;qid=1593628139&amp;s=computers&amp;sr=1-3">USB OTG cable</a></li>
+<li><a href="https://www.amazon.es/Gaoominy-Caja-para-Raspberry-Zero/dp/B07QV5RXCN/ref=sr_1_10?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;crid=2PS8DPO5AEH1F&amp;dchild=1&amp;keywords=caja+raspberry+pi+zero&amp;qid=1593189549&amp;s=electronics&amp;sprefix=caja+rasp%2Celectronics%2C181&amp;sr=1-10">Raspberry Pi Zero case</a></li>
+<li><a href="https://www.amazon.es/gp/product/B00P94TB52/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&amp;psc=1">Velcro stickers</a></li>
+</ul>
+<p>See the <a href="https://www.amazon.es/hz/wishlist/ls/WO5Z2VX24HGJ?ref_=wl_share">Amazon wishlist</a>.</p>
+<h2 id="install-the-os">Install the OS</h2>
+<p>If you are new to Raspberry Pi, you should get some information about it <a href="https://www.raspberrypi.org/">here</a>.</p>
+<p>If you are already familiar with the Raspberry Pi, let's start.</p>
+<p>The code and the following procedure has been designed and tested to use the Raspberry Pi OS (previously called Raspbian).</p>
+<p>Use <a href="https://www.raspberrypi.org/downloads/">Raspberry Pi Imager</a> for an easy way to install Raspberry Pi OS (and other operating systems) to an SD card.</p>
+<p>Once you have Raspberry Pi Imager installed open it and:</p>
+<ul>
+<li>Under <code>Choose OS</code> option select <code>Raspberry Pi OS (other)</code> and then choose <code>Raspberry Pi OS Lite (32-bit)</code></li>
+<li>Choose your SD card</li>
+<li>and Write it</li>
+</ul>
+<h2 id="wlan-and-ssh-configuration">WLAN and SSH configuration</h2>
+<p>Before you can put the SD card into the Pi and boot it, you should enable SSH connections and configure the WLAN.</p>
+<p>To enable ssh create an empty file called <code>ssh</code> in the root of your SD card.</p>
+<p>To configure WLAN create a file “wpa_supplicant.conf” with the following content and copy it in the root of your SD card.</p>
+<p><em>I recommend to configure both your Home and Car WiFi in this step</em></p>
+<pre><code>country=ES
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+    ssid=&quot;&lt;YOUR HOME WLAN SSID HERE&gt;&quot;
+    psk=&quot;&lt;YOUR HOME WLAN PASSWORD HERE&gt;&quot;
+    priority=20
+    key_mgmt=WPA-PSK
+    id_str=&quot;home&quot;
+}
+
+network={
+    ssid=&quot;&lt;YOUR CAR WLAN SSID HERE&gt;&quot;
+    psk=&quot;&lt;YOUR CAR WLAN PASSWORD HERE&gt;&quot;
+    priority=1
+    key_mgmt=WPA-PSK
+    id_str=&quot;car&quot;
+}
+</code></pre>
+<h2 id="first-raspberry-pi-startup">First Raspberry Pi startup</h2>
+<p>To be able to easily ssh your Pi, I recommend that you set up your home router to assign a static IP address to the Raspberry Pi. As the procedure is different for every router, please google for some information on how to do it on your router.</p>
+<p>Once you have set up your IP address, turn on your Raspberry Pi and use any SSH client to connect to it.</p>
+<p>The default username is <code>pi</code> the password <code>raspberry</code>.</p>
+<p>Change the default password by typing: <code>passwd</code>.</p>
+<p>Run raspi-config to Enable wait for network a boot (you may also want to change other settings such as Locale, Time Zone,...):</p>
+<ol>
+<li>Type: <code>sudo raspi-config</code>.</li>
+<li>Scroll down to <code>3 Boot Options</code> and press enter.</li>
+<li>Scroll down to <code>B2 Wait for Network at Boot</code> and press enter.</li>
+<li>Select <code>YES</code></li>
+</ol>
+<p>This tells the Raspberry Pi to wait for a network during the boot process.</p>
+<p>Save and exit the raspi-config by selecting <code>OK</code> and then <code>Finish</code>. Then, reboot your Pi. Now your Pi should wait for a network before completely booting! BTW: Yes, this works with WiFi.</p>
+<h2 id="package-intallation">Package intallation</h2>
+<p>Get the latest updates from the OS (this may take a while, so relax, grab a beer and enjoy looking at the progress...)</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+<p>Reboot if needed.</p>
+<pre><code>sudo reboot
+</code></pre>
+<p>Then install needed packages:</p>
+<pre><code>sudo apt-get install bluetooth bluez-tools blueman python3-pip git
+</code></pre>
+<h2 id="pairing-obdii-bluetooth-dongle-with-raspberry-pi">Pairing OBDII Bluetooth Dongle with Raspberry Pi</h2>
+<p>Now we're ready to pair the OBDII Bluetooth Dongle with Raspberry Pi.</p>
+<p><strong>IMPORTANT</strong> Bellow requirements need to be met to pair the OBDII bluetooth with the Raspberry Pi:</p>
+<ol>
+<li>OBDII dongle is plugged into the OBDII port of your car.</li>
+<li>Raspberry Pi is within the range of the OBDII bluetooth dongle (~&lt;5m).</li>
+<li>Raspberry Pi is connected to the WiFi and accessible through ssh. During the pairing process, I use a powerbank to power the Raspberry Pi to keep it within the range of OBDII bluetooth and my home WiFi. In my case using the USB charger plugged into the car makes the RaspberryPi to be out of WiFi range.</li>
+<li>The vehicle is switched on.</li>
+</ol>
+<p><em>I'm lucky and meeting all those requirements is easy for me!!!. If are not so lucky, you will need to find an alternative way pair the OBDII with the Raspberry Pi.</em></p>
+<p>Ok, so now we're ready to start the pairing process:</p>
+<pre><code>sudo bluetoothctl
+</code></pre>
+<p>Then when the <code>[bluetooth]#</code> promt is shown, type:</p>
+<pre><code>agent on
+scan on
+</code></pre>
+<p>You will get a list of all Bluetooth devices in range and within the list it should also appear your OBDII dongle. Identify it and you will also see the device address (Format: XX: XX: XX: XX: XX: XX). Note down this address because it's important for the next steps!.</p>
+<p>Please replace <code>XX:XX:XX:XX:XX:XX</code> with the address of your OBDII dongle for next steps.</p>
+<p>Pairing:</p>
+<pre><code>pair XX:XX:XX:XX:XX:XX
+</code></pre>
+<p>Now you have to enter the device code. Usually it's <code>1234</code> or <code>0000</code>, see your OBDII instructions manual to find your device code.</p>
+<p>If that worked, you still have to trust the device, so you don't need to pair the device every time:</p>
+<pre><code>trust XX:XX:XX:XX:XX:XX
+</code></pre>
+<p>To be able to access the OBDII dongle, it must be integrated as a serial device. This needs to be done after each restart.</p>
+<p>To create your OBDII dongle as a serial device, add the following line to the file <code>/etc/rc.local</code>:</p>
+<pre><code>sudo rfcomm bind hci0 XX:XX:XX:XX:XX:XX 1
+</code></pre>
+<p>Then reboot the Raspberry Pi</p>
+<pre><code>sudo reboot
+</code></pre>
+<h2 id="configuring-the-gps">Configuring the GPS</h2>
+<p>Install needed packages:</p>
+<pre><code>sudo apt-get install gpsd gpsd-clients ntp
+</code></pre>
+<p>Now configure the gpsd daemon:</p>
+<pre><code>sudo nano /etc/default/gpsd
+</code></pre>
+<p>The file should look something like this (I only needed to change the <code>DEVICES</code> property):</p>
+<pre><code># Default settings for the gpsd init script and the hotplug wrapper.
+
+# Start the gpsd daemon automatically at boot time
+START_DAEMON=&quot;true&quot;
+
+# Use USB hotplugging to add new USB devices automatically to the daemon
+USBAUTO=&quot;true&quot;
+
+# Devices gpsd should collect to at boot time.
+# They need to be read/writeable, either by user gpsd or the group dialout.
+DEVICES=&quot;/dev/ttyUSB0&quot;
+
+# Other options you want to pass to gpsd
+GPSD_OPTIONS=&quot;&quot;
+</code></pre>
+<p>And then restart the service.</p>
+<pre><code>sudo systemctl restart gpsd
+</code></pre>
+<p>To test that GPS is working, first make sure you have the GPS USB device plugged into your Raspberry Pi USB port (you will need the USB to micro USB adapter) and run <code>cgps</code> utility.</p>
+<pre><code>cgps
+</code></pre>
+<p>You should see something like:</p>
+<pre><code>lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqklqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+x    Time:       2020-07-01T17:03:30.000Z   xxPRN:   Elev:  Azim:  SNR:  Used: x
+x    Latitude:    x.xxxxxxxxx N             xx   1    67    078    47      Y   x
+x    Longitude:    y.yyyyyyyy E             xx   3    74    321    32      Y   x
+x    Altitude:   124.967 m                  xx   4    37    183    19      Y   x
+x    Speed:      0.00 kph                   xx   8    12    165    24      Y   x
+x    Heading:    0.0 deg (true)             xx  11    43    138    44      Y   x
+x    Climb:      0.00 m/min                 xx  14    24    045    40      Y   x
+x    Status:     3D DIFF FIX (6 secs)       xx  17    34    309    26      Y   x
+x    Longitude Err:   +/- 10 m              xx  19    15    319    27      Y   x
+x    Latitude Err:    +/- 4 m               xx  22    66    034    39      Y   x
+x    Altitude Err:    +/- 19 m              xx  28    13    264    22      Y   x
+x    Course Err:      n/a                   xx  31    10    079    27      Y   x
+x    Speed Err:       +/- 72 kph            xx 123    35    138    43      Y   x
+x    Time offset:     1.264                 xx                                 x
+x    Grid Square:     JM19ip                xx                                 x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+#precedence ::ffff:0:0/96  100
+
+#
+# scopev4  &lt;mask&gt;  &lt;value&gt;
+#    Add another rule to the RFC 6724 scope table for IPv4 addresses.
+#    By default the scope IDs described in section 3.2 in RFC 6724 are
+#    used.  Changing these defaults should hardly ever be necessary.
+#    The defaults are equivalent to:
+#
+#scopev4 ::ffff:169.254.0.0/112  2
+#scopev4 ::ffff:127.0.0.0/104    2
+#scopev4 ::ffff:0.0.0.0/96       14
+Mobility Support for IPv6 [RFC3775]
+udplite 136     UDPLite         # UDP-Lite [RFC3828]
+mpls-in-ip 137  MPLS-in-IP      # MPLS-in-IP [RFC4023]
+manet   138                     # MANET Protocols [RFC5498]
+hip     139     HIP             # Host Identity Protocol
+shim6   140     Shim6           # Shim6 Protocol [RFC5533]
+wesp    141     WESP            # Wrapped Encapsulating Security Payload
+rohc    142     ROHC            # Robust Header Compression
+
+H.10- 04/25/2019 115&quot;,&quot;activated&quot;:&quot;2020-07-01T17:03:24.423Z&quot;,&quot;flags&quot;:1,&quot;native&quot;:1,&quot;bps&quot;:4800,&quot;parity&quot;:&quot;N&quot;,&quot;stopbits&quot;:1,&quot;cycle&quot;:1.00}]}
+{&quot;class&quot;:&quot;WATCH&quot;,&quot;enable&quot;:true,&quot;json&quot;:true,&quot;nmea&quot;:false,&quot;raw&quot;:0,&quot;scaled&quot;:false,&quot;timing&quot;:false,&quot;split24&quot;:false,&quot;pps&quot;:false}
+{&quot;class&quot;:&quot;TPV&quot;,&quot;device&quot;:&quot;/dev/ttyUSB0&quot;,&quot;status&quot;:2,&quot;mode&quot;:3,&quot;time&quot;:&quot;2020-07-01T17:03:24.000Z&quot;,&quot;ept&quot;:0.005,&quot;lat&quot;:x.xxxxxxxxxxx,&quot;lon&quot;:y.yyyyyyyyyyyy,&quot;alt&quot;:124.967,&quot;epx&quot;:10.106,&quot;epy&quot;:4.597,&quot;epv&quot;:19.127,&quot;track&quot;:0.0000,&quot;speed&quot;:0.000,&quot;climb&quot;:0.000,
+&quot;eps&quot;:20.21,&quot;epc&quot;:38.25}
+</code></pre>
+<p>If you are not getting GPS coordinates something may be wrong. Please google for additional information and troubleshooting.</p>
+<h2 id="wiring">Wiring</h2>
+<ol>
+<li><a href="https://www.amazon.es/Bluetooth-Scanner-Diagn%C3%B3stico-Wireless-Mercedes/dp/B079HS1LWB/ref=sr_1_15?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=ELM327&amp;qid=1593189429&amp;s=electronics&amp;sr=1-15">ELM327 Bluetooth scanner</a> should be plugged into the OBDII port of your car.</li>
+<li><a href="https://www.amazon.es/gp/product/B01HYZ8QPO/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1">USB car charger</a> should be plugged into the 12V plug of your car.</li>
+<li><a href="https://www.amazon.es/Huawei-USB-Stick-E3372-Inal%C3%A1mbrica/dp/B013UURTL4/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=LTE+Stick+Huawei+E3372&amp;qid=1593188977&amp;s=electronics&amp;sr=1-2">LTE Stick Huawei E3372</a> should be plugged into the USB car charger (you may want to use the <a href="https://www.amazon.es/Cable-SODIAL-enchufe-extnsion-conector/dp/B01EIYCERU/ref=sr_1_25?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=alargador+USB&amp;qid=1593189217&amp;s=electronics&amp;sr=1-25">USB cable extender</a> to hide a bit the stick).</li>
+<li><a href="https://www.amazon.es/Raspberry-Pi-Zero-wh/dp/B07BHMRTTY/ref=sr_1_5?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=Raspberry+Pi+Zero+W&amp;qid=1593189037&amp;s=electronics&amp;sr=1-5">Raspberry Pi Zero W</a> should be plugged into the USB car charger using the <a href="https://www.amazon.es/gp/product/B003YKX6WM/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&amp;psc=1">USB to Micro USB adapter</a>.</li>
+<li><a href="https://www.amazon.es/GlobalSat-BU-353-S4-Receptor-SiRF-Star/dp/B008200LHW/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;crid=2ENXQ7W8O8JQE">USB GPS receiver GlobalSat BU-353-S4</a> should be plugged to the Raspberry Pi using the <a href="https://www.amazon.es/UGREEN-10396P-Hembra-Tel%C3%A9fono-Paquete/dp/B00N9S9Z0G/ref=sr_1_3?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=usb+female+to+micro+usb&amp;qid=1593628139&amp;s=computers&amp;sr=1-3">USB OTG cable</a>.</li>
+</ol>
+<h2 id="installing-iotconnect">Installing IOTConnect</h2>
+<p>Follow the installation instructions from the <a href="../GettingStarted/#installation">Getting started</a> page.</p>
+<h3 id="prepare-config-files">Prepare config files</h3>
+<p>Make sure you are in <code>/opt/IOTConnect</code> folder.</p>
+<p>Copy config file from template.</p>
+<pre><code>cp iotconnect/iotconnect.config.template.json iotconnect/iotconnect.config.json
+</code></pre>
+<p>Adapt it to your needs.</p>
+<h2 id="execute-the-script">Execute the script</h2>
+<p>To test that everything works, execute IOTConnect:</p>
+<ol>
+<li>Make sure all the wiring is properly done (see Wiring section above).</li>
+<li>The vehicle is switched on.</li>
+<li>The Raspberry Pi is in range of OBDII bluetooth.</li>
+</ol>
+<p>Run the command:</p>
+<pre><code>python3 -m iotconnect
+</code></pre>
+<p>This should publish the information to the configured destination.</p>
+<p>If this works congratulations you are almost done!</p>
+<h2 id="run-as-a-service">Run as a service</h2>
+<p>Follow the run as a service instructions from <a href="../GettingStarted/#run-as-a-service">Getting started</a> page.</p>
+<h2 id="car-wifi">Car WiFi</h2>
+<p>To have WiFi in the car, I use a UBS powered stick that as soon as it get some power it startup, connects to the 4G LTE network and operates as a WiFi router.
+In my case I use the <a href="https://www.amazon.es/Huawei-E8372-Modem-WiFi-LTE/dp/B014WMEJ2Q/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=LTE+Stick+Huawei+E3372&amp;qid=1600272912&amp;s=electronics&amp;sr=1-2">Huawei E3372 LTE stick</a>. Please refer to your specific stick instructions on how to configure it.</p>
+<h2 id="data-types-and-data-format">Data types and data format</h2>
+<p>Those are the MQTT topics and format used for each one:</p>
+<h3 id="state">state</h3>
+<p>This information may be useful to know that the script is running and last time it ran. State topic is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']state</code> i.e.: <code>car/sensor/ioniq/state</code> as a JSON object with the following format:</p>
+<pre><code>{
+   timestamp integer Linux Epoch time.
+   state     string  Constant string with the &quot;running&quot; value.
+   monitors  array   Array containing all the configured monitors and their status (started or stopped).
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+    &quot;timestamp&quot;: 1597091185,
+    &quot;state&quot;: &quot;running&quot;,
+    &quot;monitors&quot;: [{&quot;GpsMonitor&quot;: &quot;started&quot;}, {&quot;IoniqEVMonitor&quot;: &quot;started&quot;}]}
+}
+</code></pre>
+<h3 id="battery">battery</h3>
+<p>BMS (Battery Management System) information is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']battery</code> i.e.: <code>car/sensor/ioniq/battery</code> as a JSON object with the following format:</p>
+<pre><code>{
+   timestamp                       integer         Linux Epoch time.
+   socBms                          float (0-100)   Battery status of charge in % (as seen by Battery Management System).
+   socDisplay                      integer (0-100) Battery status of charge in % (as seen as in car display).
+   soh                             float (0-100)   Battery status of health in %.
+   bmsIgnition                     0 or 1          Car ignition. 0: false, 1: true.
+   bmsMainRelay                    0 or 1          BMS main relay. 0: false, 1: true.
+   auxBatteryVoltage               float           Aux battery voltage in V.
+   auxBatteryPercent               float           Aux battery percentaje.
+   charging                        0 or 1          Is the car charging ? 0: false, 1: true.
+   normalChargePort                0 or 1          Is charging using normal charge port? 0: false, 1: true.
+   rapidChargePort                 0 or 1          Is charging using rapid charge port? 0: false, 1: true.
+   minsToCompleteCharge            integer         Minutes to complete 100% battery charge. Estimation based on current charge speed. 0 if not charging.
+   fanStatus                       integer (0-9)   Cooling fan speed. 0 means stopped. 1 to 9 lower to higher speed.
+   fanFeedback                     integer         Fan feedback signal in Hz.
+   cumulativeEnergyCharged         float           Cumulative energy charged in kWh.
+   cumulativeEnergyDischarged      float           Cumulative energy discharged in kWh.
+   cumulativeChargeCurrent         float           Cumulative current charged in A.
+   cumulativeDischargeCurrent      float           Cumulative current discharged in A.
+   availableChargePower            float           Available charge power kW. In Ioniq EV max value is 98kW.
+   availableDischargePower         float           Available discharge power in kW. In Ioniq EV max value is 98kW.
+   dcBatteryCellVoltageDeviation   integer         DC battery cell voltage deviation in V.
+   dcBatteryHeater1Temperature     float           DC battery heater1 temperature in ºC.
+   dcBatteryHeater2Temperature     float           DC battery heater2 temperature in ºC.
+   dcBatteryInletTemperature       integer         DC battery inlet temperature in ºC.
+   dcBatteryMaxTemperature         integer         DC battery maximum cell temperature in ºC.
+   dcBatteryMinTemperature         integer         DC battery minimum cell temperature in ºC.
+   dcBatteryAvgTemperature         integer         DC battery average cells temperature in ºC.
+   dcBatteryCellMaxVoltage         float           DC battery maximum voltage in V.
+   dcBatteryCellNoMaxVoltage       integer (1-96)  DC battery maximum voltage cell number.
+   dcBatteryCellMaxDeterioration   float (0-100)   DC battery maximum deterioration cell in %.
+   dcBatteryCellNoMaxDeterioration integer (1-96)  DC battery maximium deterioration cell number.
+   dcBatteryCellMinVoltage         float           DC battery minimum voltage in V.
+   dcBatteryCellNoMinVoltage       integer (1-96)  DC battery minimum voltage cell number.
+   dcBatteryCellMinDeterioration   float (0-100)   DC battery minimum deterioration cell in %.
+   dcBatteryCellNoMinDeterioration integer (1-96)  DC battery minimum deterioration cell number.
+   dcBatteryCurrent                float           DC battery instant current in A.
+   dcBatteryPower                  float           DC battery instant power in kW.
+   dcBatteryVoltage                float           DC battery instant  voltage in V.
+   dcBatteryModuleTempxx           float           DC battery module temperature in ºC. Where xx goes from 01 to 12.
+   dcBatteryCellVoltagexx          float           DC battery cell voltage in V. Where xx goes from 01 to 96.
+   driveMotorSpeed                 integer         Motor speed in RPM.
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+   &quot;timestamp&quot;:1594794497,
+   &quot;socBms&quot;:45.0,
+   &quot;socDisplay&quot;:46,
+   &quot;soh&quot;:100.0,
+   &quot;bmsIgnition&quot;: 1,
+   &quot;bmsMainRelay&quot;: 1,
+   &quot;auxBatteryVoltage&quot;:14.5,
+   &quot;auxBatteryPercent&quot;:50.0,
+   &quot;charging&quot;:0,
+   &quot;normalChargePort&quot;:0,
+   &quot;rapidChargePort&quot;:0,
+   &quot;minsToCompleteCharge&quot;: 0,
+   &quot;fanStatus&quot;:0,
+   &quot;fanFeedback&quot;:0,
+   &quot;cumulativeEnergyCharged&quot;:3029.8,
+   &quot;cumulativeEnergyDischarged&quot;:2952.3,
+   &quot;cumulativeChargeCurrent&quot;:8400.0,
+   &quot;cumulativeDischargeCurrent&quot;:8372.3,
+   &quot;availableChargePower&quot;:98.0,   
+   &quot;availableDischargePower&quot;:98.0,
+   &quot;dcBatteryCellVoltageDeviation&quot;: 0,
+   &quot;dcBatteryHeater2Temperature&quot;: 0.0,
+   &quot;dcBatteryHeater1Temperature&quot;: 0.0,
+   &quot;dcBatteryInletTemperature&quot;:27,
+   &quot;dcBatteryMaxTemperature&quot;:28,
+   &quot;dcBatteryMinTemperature&quot;:26,
+   &quot;dcBatteryAvgTemperature&quot;:27,
+   &quot;dcBatteryCellMaxDeterioration&quot;: 0,
+   &quot;dcBatteryCellNoMaxDeterioration&quot;: 2,
+   &quot;dcBatteryCellMinDeterioration&quot;: 100.0,
+   &quot;dcBatteryCellNoMinDeterioration&quot;: 10,
+   &quot;dcBatteryCurrent&quot;:1.7,
+   &quot;dcBatteryPower&quot;:0.5924499999999999,
+   &quot;dcBatteryVoltage&quot;:348.5,
+   &quot;dcBatteryModuleTemp01&quot;:27.0,
+   &quot;dcBatteryModuleTemp02&quot;:27.0,
+   &quot;dcBatteryModuleTemp03&quot;:26.0,
+   &quot;dcBatteryModuleTemp04&quot;:27.0,
+   &quot;dcBatteryModuleTemp05&quot;:27.0,
+   &quot;dcBatteryModuleTemp06&quot;:27.0,
+   &quot;dcBatteryModuleTemp07&quot;:27.0,
+   &quot;dcBatteryModuleTemp08&quot;:28.0,
+   &quot;dcBatteryModuleTemp09&quot;:27.0,
+   &quot;dcBatteryModuleTemp10&quot;:27.0,
+   &quot;dcBatteryModuleTemp11&quot;:27.0,
+   &quot;dcBatteryModuleTemp12&quot;:27.0,
+   &quot;dcBatteryCellVoltage01&quot;:3.62,
+   &quot;dcBatteryCellVoltage02&quot;:3.62,
+   &quot;dcBatteryCellVoltage03&quot;:3.62,
+   &quot;dcBatteryCellVoltage04&quot;:3.62,
+   &quot;dcBatteryCellVoltage05&quot;:3.62,
+   &quot;dcBatteryCellVoltage06&quot;:3.62,
+   &quot;dcBatteryCellVoltage07&quot;:3.62,
+   &quot;dcBatteryCellVoltage08&quot;:3.62,
+   &quot;dcBatteryCellVoltage09&quot;:3.62,
+   &quot;dcBatteryCellVoltage10&quot;:3.6,
+   &quot;dcBatteryCellVoltage11&quot;:3.62,
+   &quot;dcBatteryCellVoltage12&quot;:3.62,
+   &quot;dcBatteryCellVoltage13&quot;:3.62,
+   &quot;dcBatteryCellVoltage14&quot;:3.62,
+   &quot;dcBatteryCellVoltage15&quot;:3.62,
+   &quot;dcBatteryCellVoltage16&quot;:3.62,
+   &quot;dcBatteryCellVoltage17&quot;:3.62,
+   &quot;dcBatteryCellVoltage18&quot;:3.62,
+   &quot;dcBatteryCellVoltage19&quot;:3.62,
+   &quot;dcBatteryCellVoltage20&quot;:3.62,
+   &quot;dcBatteryCellVoltage21&quot;:3.62,
+   &quot;dcBatteryCellVoltage22&quot;:3.62,
+   &quot;dcBatteryCellVoltage23&quot;:3.62,
+   &quot;dcBatteryCellVoltage24&quot;:3.62,
+   &quot;dcBatteryCellVoltage25&quot;:3.62,
+   &quot;dcBatteryCellVoltage26&quot;:3.62,
+   &quot;dcBatteryCellVoltage27&quot;:3.62,
+   &quot;dcBatteryCellVoltage28&quot;:3.62,
+   &quot;dcBatteryCellVoltage29&quot;:3.62,
+   &quot;dcBatteryCellVoltage30&quot;:3.62,
+   &quot;dcBatteryCellVoltage31&quot;:3.62,
+   &quot;dcBatteryCellVoltage32&quot;:3.62,
+   &quot;dcBatteryCellVoltage33&quot;:3.6,
+   &quot;dcBatteryCellVoltage34&quot;:3.6,
+   &quot;dcBatteryCellVoltage35&quot;:3.6,
+   &quot;dcBatteryCellVoltage36&quot;:3.6,
+   &quot;dcBatteryCellVoltage37&quot;:3.6,
+   &quot;dcBatteryCellVoltage38&quot;:3.6,
+   &quot;dcBatteryCellVoltage39&quot;:3.6,
+   &quot;dcBatteryCellVoltage40&quot;:3.6,
+   &quot;dcBatteryCellVoltage41&quot;:3.6,
+   &quot;dcBatteryCellVoltage42&quot;:3.6,
+   &quot;dcBatteryCellVoltage43&quot;:3.6,
+   &quot;dcBatteryCellVoltage44&quot;:3.6,
+   &quot;dcBatteryCellVoltage45&quot;:3.6,
+   &quot;dcBatteryCellVoltage46&quot;:3.6,
+   &quot;dcBatteryCellVoltage47&quot;:3.6,
+   &quot;dcBatteryCellVoltage48&quot;:3.6,
+   &quot;dcBatteryCellVoltage49&quot;:3.6,
+   &quot;dcBatteryCellVoltage50&quot;:3.6,
+   &quot;dcBatteryCellVoltage51&quot;:3.6,
+   &quot;dcBatteryCellVoltage52&quot;:3.6,
+   &quot;dcBatteryCellVoltage53&quot;:3.6,
+   &quot;dcBatteryCellVoltage54&quot;:3.6,
+   &quot;dcBatteryCellVoltage55&quot;:3.6,
+   &quot;dcBatteryCellVoltage56&quot;:3.6,
+   &quot;dcBatteryCellVoltage57&quot;:3.6,
+   &quot;dcBatteryCellVoltage58&quot;:3.6,
+   &quot;dcBatteryCellVoltage59&quot;:3.6,
+   &quot;dcBatteryCellVoltage60&quot;:3.6,
+   &quot;dcBatteryCellVoltage61&quot;:3.6,
+   &quot;dcBatteryCellVoltage62&quot;:3.6,
+   &quot;dcBatteryCellVoltage63&quot;:3.6,
+   &quot;dcBatteryCellVoltage64&quot;:3.6,
+   &quot;dcBatteryCellVoltage65&quot;:3.6,
+   &quot;dcBatteryCellVoltage66&quot;:3.6,
+   &quot;dcBatteryCellVoltage67&quot;:3.6,
+   &quot;dcBatteryCellVoltage68&quot;:3.6,
+   &quot;dcBatteryCellVoltage69&quot;:3.6,
+   &quot;dcBatteryCellVoltage70&quot;:3.6,
+   &quot;dcBatteryCellVoltage71&quot;:3.6,
+   &quot;dcBatteryCellVoltage72&quot;:3.6,
+   &quot;dcBatteryCellVoltage73&quot;:3.6,
+   &quot;dcBatteryCellVoltage74&quot;:3.6,
+   &quot;dcBatteryCellVoltage75&quot;:3.6,
+   &quot;dcBatteryCellVoltage76&quot;:3.6,
+   &quot;dcBatteryCellVoltage77&quot;:3.6,
+   &quot;dcBatteryCellVoltage78&quot;:3.6,
+   &quot;dcBatteryCellVoltage79&quot;:3.6,
+   &quot;dcBatteryCellVoltage80&quot;:3.6,
+   &quot;dcBatteryCellVoltage81&quot;:3.6,
+   &quot;dcBatteryCellVoltage82&quot;:3.6,
+   &quot;dcBatteryCellVoltage83&quot;:3.6,
+   &quot;dcBatteryCellVoltage84&quot;:3.6,
+   &quot;dcBatteryCellVoltage85&quot;:3.6,
+   &quot;dcBatteryCellVoltage86&quot;:3.6,
+   &quot;dcBatteryCellVoltage87&quot;:3.6,
+   &quot;dcBatteryCellVoltage88&quot;:3.6,
+   &quot;dcBatteryCellVoltage89&quot;:3.6,
+   &quot;dcBatteryCellVoltage90&quot;:3.6,
+   &quot;dcBatteryCellVoltage91&quot;:3.6,
+   &quot;dcBatteryCellVoltage92&quot;:3.6,
+   &quot;dcBatteryCellVoltage93&quot;:3.6,
+   &quot;dcBatteryCellVoltage94&quot;:3.6,
+   &quot;dcBatteryCellVoltage95&quot;:3.6,
+   &quot;dcBatteryCellVoltage96&quot;:3.6,
+   &quot;driveMotorSpeed&quot;:4200
+}
+</code></pre>
+<h3 id="odometer">odometer</h3>
+<p>Odometer information is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']odometer</code> i.e.: <code>car/sensor/ioniq/odometer</code> as a json object with the following format:</p>
+<pre><code>{
+   timestamp integer Linux Epoch time.
+   odometer  integer Odometer value in Km.
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+    &quot;timestamp&quot;: 1596316222,
+    &quot;odometer&quot;: 23100
+}
+</code></pre>
+<h3 id="vmcu">vmcu</h3>
+<p>Vehicle Motor Control Unit information is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']vmcu</code> i.e.: <code>car/sensor/ioniq/vmcu</code> as a json object with the following format:</p>
+<pre><code>{
+   timestamp         integer Linux Epoch time.
+   vin               string  Vehicle Identification Number, also called a chassis number (or número de bastidor in spanish).
+   gear              string  Gear stick position. P = Park, N = Neutral, D = Drive or R = Rear.
+   speed             float   Vehicle speed in kmh.
+   accel_pedal_depth integer Accelerator pedal depth in %.
+   brake_lamp        0 or 1  0 brake lamp is off, 1 brake lamp is on.
+   brakes_on         0 or 1  0 brakes are off, 1 brakes are on.
+   auxBatteryCurrent float   Aux battery current in A. PENDING TO VERIFY THAT IS CORRECT!!!!!!!!!!!!!!
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+   &quot;timestamp&quot;:1594994497,
+   &quot;vin&quot;:&quot;XXXXXXXXXXXXXXXXXX&quot;,
+   &quot;gear&quot;: &quot;D&quot;,
+   &quot;speed&quot;: 67.0,
+   &quot;accel_pedal_depth&quot;: 28,
+   &quot;brake_lamp&quot;: 0,
+   &quot;brakes_on&quot;: 0,
+   &quot;auxBatteryCurrent&quot;: -0.052
+}
+</code></pre>
+<h3 id="tpms">tpms</h3>
+<p>Tire Pressure Monitor System information is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']tpms</code> i.e.: <code>car/sensor/ioniq/tpms</code> as a json object with the following format:</p>
+<pre><code>{
+   timestamp           integer Linux Epoch time.
+   tire_fl_pressure    float   Front left tire pressure in bar.
+   tire_fl_temperature integer Front left tire temperature in ºC.
+   tire_fr_pressure    float   Front right tire pressure in bar.
+   tire_fr_temperature integer Front right tire temperature in ºC.
+   tire_bl_pressure    float   Back left tire pressure in bar.
+   tire_bl_temperature integer Back left tire temperature in ºC.
+   tire_br_pressure    float   Back right tire pressure in bar.
+   tire_br_temperature integer Back right tire temperature in ºC.
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+   &quot;timestamp&quot;:1596146085,
+   &quot;tire_fl_pressure&quot;:2.7,
+   &quot;tire_fl_temperature&quot;:28,
+   &quot;tire_fr_pressure&quot;:2.6
+   &quot;tire_fr_temperature&quot;:28,
+   &quot;tire_bl_pressure&quot;:2.6,
+   &quot;tire_bl_temperature&quot;:33,
+   &quot;tire_br_pressure&quot;:2.5,
+   &quot;tire_br_temperature&quot;:33
+}
+</code></pre>
+<h3 id="external-temperature">external temperature</h3>
+<p>External temperature information is published from <code>IoniqEVMonitor</code> in the <code>config['mqtt']['topic_prefix']ext_temp</code> i.e.: <code>car/sensor/ioniq/ext_temp</code> as a json object with the following format:</p>
+<pre><code>{
+   timestamp            integer Linux Epoch time.
+   external_temperature float   External temperature in ºC.
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+    &quot;timestamp&quot;: 1596316222,
+    &quot;external_temperature&quot;: 29.5
+}
+</code></pre>
+<h3 id="location">location</h3>
+<p>Location information is published from <code>GpsMonitor</code> in the <code>config['mqtt']['topic_prefix']location</code> i.e.: <code>car/sensor/ioniq/location</code> as a JSON object with the following format:</p>
+<pre><code>{
+    latitude     float Latitude.
+    longitude    float Longitude.
+    last_update  float Linux Epoch time.
+    gps_accuracy float Max of latitude or longitude estimated error.
+    platitude    float Latitude fixed on last iteration.
+    plongitude   float Longitude fixed on last iteration.
+    track        float Course over ground in degrees from True North.
+    speed        float Speed in m/s.
+    epx          float Estimated longitude error.
+    epy          float Estimated latitude error.
+    epv          float Estimated altitude error.
+    ept          float Estimated time error.
+    eps          float Estimated Speed error.
+    mode         float NMEA mode; values are: 0 - NA, 1 - No Fix, 2D and 3D.
+    climb        float Climb (Positive) or Sink (Negative) rate in m/s of upwards or downwards movement.
+}
+</code></pre>
+<p>Sample:</p>
+<pre><code>{
+   &quot;track&quot;:326.4788,
+   &quot;platitude&quot;:19.634422362,
+   &quot;speed&quot;:0.216,
+   &quot;epx&quot;:9.772,
+   &quot;epy&quot;:15.465,
+   &quot;epv&quot;:30.186,
+   &quot;ept&quot;:0.005,
+   &quot;eps&quot;:30.93,
+   &quot;longitude&quot;:23.23253151,
+   &quot;last_update&quot;:1593980780,
+   &quot;gps_accuracy&quot;:15.465,
+   &quot;mode&quot;:3,
+   &quot;latitude&quot;:19.644422362,
+   &quot;climb&quot;:-0.021,
+   &quot;plongitude&quot;:23.24253151
+}
+</code></pre>
+<h2 id="monitor-when-charging">Monitor when charging</h2>
+<p>One of the caveats of using the existing 12V plugs is that those are only powered when the car engine is on, meaning that it's not possible to monitor the status of the battery while the car is charging.</p>
+<p>To be able to monitor the battery while the car is charging and not drain the 12V battery I've added a <a href="https://www.amazon.es/gp/product/B018OYOSHY/ref=ppx_yo_dt_b_asin_title_o09_s00?ie=UTF8&amp;psc=1">new 12V plug</a> that takes the power from the fuse box that it's ONLY active when the car engine is on or the car is charging.</p>
+<p>You can use the following fuse (IG3 2) to achieve this:
+<img alt="Fuse box" src="../assets/images/fuse-box.jpg" /></p>
+<p>In order to make it easy to take the power from the fuse box I've used the following <a href="https://es.aliexpress.com/item/4000127647948.html?spm=a2g0s.9042311.0.0.2ae863c0a3Juau">adaptor</a>.</p>
+<h2 id="online-log-management-tool-logtail-installation">Online log management tool - Logtail installation</h2>
+<p>As the Raspberry Pi will usually run in your car's WiFi it is going to be complex for you to debug problems or even look at the log files. For that I'm using a Log Management tool in the cloud that offers a free tier that is more than enough for the purpose of this project (1 GB/month and 3 days log retention).</p>
+<p>Just create a free account in <a href="https://logtail.com/">Logtail</a> create a Python source, and copy &amp; paste your Source token to the Logtail handler in logging.conf file.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../publishers/MQTTPublisher/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MQTT Publisher" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              MQTT Publisher
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.5e67fbfe.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e87a5f81.min.js"></script>
+      
+    
+  </body>
+</html>
