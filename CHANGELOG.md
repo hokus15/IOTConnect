@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-01-04)
+### Fix
+* **stability:** Fix stability issues with MQTT connection and logs improvements ([`94f5ddc`](https://github.com/hokus15/IOTConnect/commit/94f5ddcb6c3ba3e478c8afe374008a9cbf314c13))
+* **monitor:** Fix E128 continuation line under-indented for visual indent ([`a34559b`](https://github.com/hokus15/IOTConnect/commit/a34559b19479d050652357c9e892661e882e172a))
+* **monitor:** Fix E275 missing whitespace after keyword ([`9b66311`](https://github.com/hokus15/IOTConnect/commit/9b663113b75942e003c711e123659dc31f4f2b09))
+* **service:** Assign SIGINT KillSignal to service ([`f2b1fbf`](https://github.com/hokus15/IOTConnect/commit/f2b1fbfa52e255f7b8455e6f378ea18e66cd322f))
+
 ## v0.4.0 (2020-12-29)
 ### Feature
 * **IoniqEVMonitor:** Added aux Battery soc in percentaje information. ([`b43326b`](https://github.com/hokus15/IOTConnect/commit/b43326b2e446bb03370b1e356d3f55c4bd1cc470))
