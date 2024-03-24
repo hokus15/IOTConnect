@@ -1,5 +1,5 @@
 gps==3.19
-obd==0.7.1
+obd==0.7.2
 paho-mqtt==1.6.1
 wrapt==1.12.1
 logtail-python==0.1.3
