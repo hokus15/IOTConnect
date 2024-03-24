@@ -28,7 +28,8 @@ class MQTTPublisher(Publisher):
             mqtt.Client.connected_flag = False
 
             # Create MQTT client
-            self._mqtt_client = mqtt.Client(client_id="IOTConnect-" + str(uuid.uuid4()),
+            self._mqtt_client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1,
+                                            client_id="IOTConnect-" + str(uuid.uuid4()),
                                             protocol=mqtt.MQTTv311,
                                             transport="tcp")
 
