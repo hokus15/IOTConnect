@@ -2,7 +2,38 @@
 
 
 
+## v1.2.0 (2024-03-24)
+
+### Feature
+
+* feat(mqtt_pub): migration to paho-mqtt 2.0.0 ([`3e56226`](https://github.com/hokus15/IOTConnect/commit/3e562262a6dae681a31fc8b4da2d20f0af4296c5))
+
+### Unknown
+
+* Merge pull request #21 from hokus15/dependabot/pip/paho-mqtt-2.0.0
+
+build(deps): bump paho-mqtt from 1.6.1 to 2.0.0 ([`afcdbea`](https://github.com/hokus15/IOTConnect/commit/afcdbeacd8d8d4490592a2d9e9f3de4addba1539))
+
+
 ## v1.1.0 (2024-03-24)
+
+### Build
+
+* build(deps): bump paho-mqtt from 1.6.1 to 2.0.0
+
+Bumps [paho-mqtt](https://github.com/eclipse/paho.mqtt.python) from 1.6.1 to 2.0.0.
+- [Release notes](https://github.com/eclipse/paho.mqtt.python/releases)
+- [Changelog](https://github.com/eclipse/paho.mqtt.python/blob/master/ChangeLog.txt)
+- [Commits](https://github.com/eclipse/paho.mqtt.python/compare/v1.6.1...v2.0.0)
+
+---
+updated-dependencies:
+- dependency-name: paho-mqtt
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`736da7e`](https://github.com/hokus15/IOTConnect/commit/736da7ebb8ef958bf46cc247e2f03e4018b0ef5b))
 
 ### Ci
 
