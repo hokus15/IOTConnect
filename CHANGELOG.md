@@ -2,6 +2,39 @@
 
 
 
+## v1.1.0 (2024-03-24)
+
+### Ci
+
+* ci(gitignore): add specific files to gitignore ([`9962c27`](https://github.com/hokus15/IOTConnect/commit/9962c27d217ef37cf1896652d4f5d7fbe2af269d))
+
+### Feature
+
+* feat(scripts): add useful scripts to manage and update the service ([`e436a7a`](https://github.com/hokus15/IOTConnect/commit/e436a7af468a576eea2e22d5e9388322105fe33c))
+
+### Fix
+
+* fix(monitor): fix using variable &#39;now&#39; before assignment ([`4737829`](https://github.com/hokus15/IOTConnect/commit/4737829fd7b9559c2ebc1a550d3297d9a5cb6f3e))
+
+* fix(scripts): double quote to prevent globbing and word splitting ([`0f28a9e`](https://github.com/hokus15/IOTConnect/commit/0f28a9e103e370439863373880a83fb2aedd6770))
+
+* fix(scripts): add shebang to scripts ([`6707b8e`](https://github.com/hokus15/IOTConnect/commit/6707b8e787371549117e8d792a79a3047b12760a))
+
+* fix(gps_mon): remove non assigned global variable ([`61783b2`](https://github.com/hokus15/IOTConnect/commit/61783b26b2f687cf61608eb4910c4f4612a9e35b))
+
+* fix(gps_monitor): replace gps by gps3 library to mantain python 3.9 or later compatibility ([`0faa170`](https://github.com/hokus15/IOTConnect/commit/0faa1701b7b5567e03ad52fbcc3f616f5ffa1c80))
+
+* fix(main): use of warning instead of deprecated warn ([`ce11229`](https://github.com/hokus15/IOTConnect/commit/ce11229412cc61934232bd40abb1bff4521c2f72))
+
+### Unknown
+
+* Merge pull request #22 from hokus15/develop
+
+Develop ([`f4b7b39`](https://github.com/hokus15/IOTConnect/commit/f4b7b39a6be2c30435b0420cfe8abfb60bf45719))
+
+* Merge branch &#39;master&#39; into develop ([`5527964`](https://github.com/hokus15/IOTConnect/commit/5527964bf05a8d278485affd99e84b4f2bdfc702))
+
+
 ## v1.0.0 (2024-03-24)
 
 ### Breaking
