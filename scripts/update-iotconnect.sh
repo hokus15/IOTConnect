@@ -1,3 +1,4 @@
+#!/bin/bash
 echo 'Stopping IOTConnect service...'
 sudo service iotconnect stop
 echo 'done!'
