@@ -3,10 +3,10 @@ import time
 import threading
 import logging
 import json
-import gps
+from gps3 import agps3
 from iotconnect.monitor import Monitor
 
-gpsd = None  # setting the global variable
+fix = None  # setting the global variable
 
 
 class GpsdThread(threading.Thread):
@@ -15,15 +15,17 @@ class GpsdThread(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.setDaemon(True)
-        global gpsd  # bring it in scope
-        gpsd = gps.gps(mode=gps.WATCH_ENABLE)  # starting the stream of info
 
     def run(self):
-        global gpsd
-        while True:
-            # this will continue to loop and grab EACH set of
-            # gpsd info to clear the buffer
-            next(gpsd)
+        global fix  # bring it in scope
+        gps_socket = agps3.GPSDSocket()
+        data_stream = agps3.DataStream()
+        gps_socket.connect()
+        gps_socket.watch()
+        for new_data in gps_socket:
+            if new_data:
+                data_stream.unpack(new_data)
+                fix = data_stream
 
 
 class GpsMonitor(Monitor):
@@ -42,55 +44,64 @@ class GpsMonitor(Monitor):
 
     def monitor(self):
         """Monitor the gps."""
-        fix = {}
-
+        global fix  # bring it in scope
+        monitor_result = {}
         # It may take some poll calls to get good data
-        if (gpsd.fix.mode == 1):
+        if (fix.mode == 1 or fix.mode == 'na'):
             self._handle_no_fix('Position not fixed')
 
-        fix_accuracy = max(gpsd.fix.epy,
-                           gpsd.fix.epx)
+        latitude_error = 100000
+        if fix.epx != 'na':
+            latitude_error = fix.epx
+
+        longitude_error = 1000
+        if fix.epy != 'na':
+            longitude_error = fix.epy
+
+        fix_accuracy = max(latitude_error,
+                           longitude_error)
+
         self._log.info('Position fixed. Accuracy: +/- %s m',
                        fix_accuracy)
         self._log.debug('Latitude error (EPY): +/- %s m',
-                        gpsd.fix.epy)
+                        fix.epy)
         self._log.debug('Longitude error (EPX): +/- %s m',
-                        gpsd.fix.epx)
+                        fix.epx)
         if fix_accuracy < self._min_accuracy:
             self._retries = 0
-            fix.update({
+            monitor_result.update({
                 'last_update': int(round(time.time())),
-                'latitude': gpsd.fix.latitude,
-                'longitude': gpsd.fix.longitude,
+                'latitude': fix.lat,
+                'longitude': fix.lon,
                 'gps_accuracy': fix_accuracy,
                 # Estimated Speed error
-                'eps': gpsd.fix.eps,
+                'eps': fix.eps,
                 # Estimated longitude error
-                'epx': gpsd.fix.epx,
+                'epx': fix.epx,
                 # Estimated latitude error
-                'epy': gpsd.fix.epy,
+                'epy': fix.epy,
                 # Estimated altitude error
-                'epv': gpsd.fix.epv,
+                'epv': fix.epv,
                 # Estimated time error
-                'ept': gpsd.fix.ept,
-                'speed': gpsd.fix.speed,  # m/s
-                'climb': gpsd.fix.climb,
-                'track': gpsd.fix.track,
-                'mode': gpsd.fix.mode
+                'ept': fix.ept,
+                'speed': fix.speed,  # m/s
+                'climb': fix.climb,
+                'track': fix.track,
+                'mode': fix.mode
             })
             if self._previous_latitude != 0 and self._previous_longitude != 0:
                 # Previous latitude and longitude data is useful to
                 # measure distance travelled between updates.
-                fix.update({
+                monitor_result.update({
                     # Latitude got from previous read
                     'platitude': self._previous_latitude,
                     # Longitude got from previous read
                     'plongitude': self._previous_longitude
                 })
-            self._previous_latitude = gpsd.fix.latitude
-            self._previous_longitude = gpsd.fix.longitude
-            self._log.info("type: gps fix, data: %s", json.dumps(fix))
-            return {'location': fix}
+            self._previous_latitude = fix.lat
+            self._previous_longitude = fix.lon
+            self._log.info("type: gps fix, data: %s", json.dumps(monitor_result))
+            return {'location': monitor_result}
         else:
             self._handle_no_fix('Low accuracy: it\'s +/- {} m but +/- {} m required'
                                 .format(fix_accuracy, self._min_accuracy))
