@@ -89,7 +89,7 @@ class GpsMonitor(Monitor):
                 })
             self._previous_latitude = gpsd.fix.latitude
             self._previous_longitude = gpsd.fix.longitude
-            self._log.info(json.dumps(fix))
+            self._log.info("type: gps fix, data: %s", json.dumps(fix))
             return {'location': fix}
         else:
             self._handle_no_fix('Low accuracy: it\'s +/- {} m but +/- {} m required'
