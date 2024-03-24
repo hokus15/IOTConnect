@@ -46,15 +46,15 @@ class GpsMonitor(Monitor):
         """Monitor the gps."""
         monitor_result = {}
         # It may take some poll calls to get good data
-        if (fix.mode == 1 or fix.mode == 'na'):
+        if (fix.mode == 1 or fix.mode == 'n/a'):
             self._handle_no_fix('Position not fixed')
 
         latitude_error = 100000
-        if fix.epx != 'na':
+        if fix.epx != 'n/a':
             latitude_error = fix.epx
 
-        longitude_error = 1000
-        if fix.epy != 'na':
+        longitude_error = 100000
+        if fix.epy != 'n/a':
             longitude_error = fix.epy
 
         fix_accuracy = max(latitude_error,
