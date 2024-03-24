@@ -25,8 +25,8 @@ class Monitor:
 
     def run(self):
         while self._running:
+            now = time.time()
             try:
-                now = time.time()
                 monitor_result = self.monitor()
                 for publisher in self._publishers:
                     if not publisher.is_initialized():
