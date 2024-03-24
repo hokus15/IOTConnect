@@ -106,7 +106,7 @@ def main():
                 # Wait some time before cheking again the monitors
                 time.sleep(15)
         except (KeyboardInterrupt, SystemExit):  # when you press ctrl+c
-            logger.warn('IOTConnect execution cancelled by user.')
+            logger.warning('IOTConnect execution cancelled by user.')
             main_running = False
         except Exception as ex:
             main_running = False
