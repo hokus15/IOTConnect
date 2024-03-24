@@ -1,5 +1,5 @@
 gps3==0.33.3
 obd==0.7.2
-paho-mqtt==1.6.1
+paho-mqtt==2.0.0
 wrapt==1.16.0
 logtail-python==0.2.10
