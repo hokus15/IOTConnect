@@ -44,7 +44,6 @@ class GpsMonitor(Monitor):
 
     def monitor(self):
         """Monitor the gps."""
-        global fix  # bring it in scope
         monitor_result = {}
         # It may take some poll calls to get good data
         if (fix.mode == 1 or fix.mode == 'na'):
