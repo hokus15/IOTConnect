@@ -1,5 +1,8 @@
 
 iotconnect/iotconnect.config.json
+iotconnect/iotconnect.config.devel.json
+iotconnect/iotconnect.config.live.json
+iotconnect/logging.live.conf
 
 *.log*
 
