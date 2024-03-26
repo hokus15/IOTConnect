@@ -2,6 +2,19 @@
 
 
 
+## v1.2.2 (2024-03-26)
+
+### Fix
+
+* fix(update-ioconnect): fix update-iotconnect script ([`f1ca507`](https://github.com/hokus15/IOTConnect/commit/f1ca5076bfa2f9e5f8a67c023e0557e65d965a65))
+
+### Unknown
+
+* Merge pull request #24 from hokus15/develop
+
+fix(update-ioconnect): fix update-iotconnect script ([`2131806`](https://github.com/hokus15/IOTConnect/commit/213180666fcfe6c38111ede002482cd10a6a10d9))
+
+
 ## v1.2.1 (2024-03-26)
 
 ### Fix
