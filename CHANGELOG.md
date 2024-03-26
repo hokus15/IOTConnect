@@ -2,6 +2,21 @@
 
 
 
+## v1.2.1 (2024-03-26)
+
+### Fix
+
+* fix(update-iotconnect): fix update script ([`f45f0a3`](https://github.com/hokus15/IOTConnect/commit/f45f0a3692f36666ea958b7bb4401d49ac941725))
+
+* fix(gps_mon): correct issue  when position is not fixed by gps ([`613546e`](https://github.com/hokus15/IOTConnect/commit/613546ef182b63ddd200de4b189d5b46ca4a42fc))
+
+### Unknown
+
+* Merge pull request #23 from hokus15/develop
+
+Develop ([`56de091`](https://github.com/hokus15/IOTConnect/commit/56de0916c60044f375ff61e8625f994aa01354fa))
+
+
 ## v1.2.0 (2024-03-24)
 
 ### Feature
