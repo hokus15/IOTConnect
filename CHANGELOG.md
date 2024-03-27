@@ -2,6 +2,19 @@
 
 
 
+## v1.2.3 (2024-03-27)
+
+### Fix
+
+* fix(load_class): better performace in load_class function ([`77b25c6`](https://github.com/hokus15/IOTConnect/commit/77b25c6014a2e48178a9151134adede7ec699180))
+
+### Unknown
+
+* Merge pull request #25 from hokus15/develop
+
+fix(load_class): better performace in load_class function ([`f807fe4`](https://github.com/hokus15/IOTConnect/commit/f807fe4fe69afd414cdf41c51c22f8de304d488f))
+
+
 ## v1.2.2 (2024-03-26)
 
 ### Fix
