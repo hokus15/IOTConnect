@@ -10,14 +10,15 @@ from .monitor import MonitorError
 
 def load_class(module_class):
     qname = module_class.split('.')
-    length = len(qname)
-    clazz = qname[length-1]
-    module = ""
-    for i in range(length-1):
-        module += qname[i] + "."
+    module_name = ".".join(qname[:-1])
+    class_name = qname[-1]
 
-    module = module.rstrip('.')
-    return getattr(import_module(module), clazz)
+    try:
+        module = import_module(module_name)
+        clazz = getattr(module, class_name)
+        return clazz
+    except (ImportError, AttributeError) as e:
+        raise ImportError(f"Error loading class {module_class}: {e}")
 
 
 def main():
@@ -45,6 +46,9 @@ def main():
                 logger.info('Loading publisher for class %s...',
                             pub_config['class'])
                 Publisher = load_class(pub_config['class'])
+                logger.debug('Loading publisher %s done!',
+                             pub_config['class'])
+
                 pub_instance = Publisher(pub_config)
                 pub_instance.initialize()
                 Publishers.append(pub_instance)
@@ -62,7 +66,11 @@ def main():
             try:
                 logger.info('Loading monitor for class %s',
                             monitor_config['class'])
-                Monitor = load_class(monitor_config['class'])
+                module_class = monitor_config['class']
+                # cProfile.run('load_class(module_class)')
+                Monitor = load_class(module_class)
+                logger.debug('Loading monitor %s done!',
+                             monitor_config['class'])
                 monitor_instance = Monitor(monitor_config, Publishers)
                 Monitors.append(monitor_instance)
                 logger.info('%s loaded', monitor_instance.__class__.__name__)
@@ -79,7 +87,7 @@ def main():
                 state_info = {'timestamp': int(round(time.time())),
                               'state': 'running'}
                 monitors_state_info = []
-                # Check monitors statate and start them if stopped
+                # Check monitors state and start them if stopped
                 for mon in Monitors:
                     status = mon.check_thread()
                     if not status:
