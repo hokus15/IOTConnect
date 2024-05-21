@@ -23,7 +23,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
-    "requests==2.31.0",
+    "requests==2.32.1",
 ]
 
 [tool.semantic_release]
