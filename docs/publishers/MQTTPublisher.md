@@ -14,7 +14,7 @@ It publishes the monitored data to an MQTT broker.
 
 ```"broker": "test.mosquitto.org"```
 
-```port```: MQTT broker port.
+```port```: MQTT broker port for TLS.
 
 ```"port": 8883```
 
@@ -28,11 +28,11 @@ It publishes the monitored data to an MQTT broker.
 
 ```topic_prefix```: Topic prefix that will be used to publish information.
 
-```qos```: QOS to be used when publishing to MQTT. Default 0.
+```qos```: Quality of service to be used when publishing to MQTT. Default 0 (at most once message delivery).
 
-```retain```: Retain flag to be used when publishing to MQTT. Default True.
+```retain```: Retain flag to be used when publishing to MQTT. Default True (retain the last message per topic).
 
-Note that ```context``` provided to the publish method will be appended to this topic. So if the ```topic_prefix``` is ```car/sensor/my-car/``` and the context is ```state``` the topic where the data will be published will be: ```car/sensor/my-car/state```.
+Note that the  ```context``` provided to the publish method will be appended to this topic. So if the ```topic_prefix``` is ```car/sensor/my-car/``` and the context is ```state``` the topic where the data will be published will be: ```car/sensor/my-car/state```.
 
 *Note that topic_prefix should end with forward slash ```/```.
 
